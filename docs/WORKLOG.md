@@ -327,3 +327,8 @@ docker compose run --rm --no-deps -e DATABASE_URL=postgresql+psycopg://jobfinder
 - Подготовленные 74 файла проверены на значения настроенных API secrets и распространённые сигнатуры токенов: совпадений нет. .env/backups/storage не staged. Ключи не выводились. Это целевая проверка, не универсальный аудит персональных данных.
 - Следующее: первый commit, bundle/source archive и приватный tar.gz; push после получения URL. Платные API в этом checkpoint не вызывались.
 - Первый commit создан: 5942cb8 (Initial JobFinderKZ prototype with durable context and device transfer guide), 74 файла. Working tree после него чистое. Подготовлены backups/project.bundle (git bundle verify успешен), backups/source.zip, backups/private-data-20260925.tar.gz; tar inventory содержит .env и jobfinder.dump. Контрольные суммы архивов — backups/ARCHIVE_SHA256.json. API/db healthy, web/worker запущены. После записи этого checkpoint bundle/source и их хэши обновляются на финальный commit документации. Remote/push ещё не выполнен: URL пользователя отсутствует.
+
+## 2026-09-25 — push в GitHub завершён
+
+- Пользователь предоставил https://github.com/NUKI1223/jobfinderkz.git и разрешил push. ls-remote подтвердил отсутствие refs, remote origin добавлен; main отправлен обычным push без force, tracking origin/main настроен. Код/журналы/инструкции переноса в GitHub; .env и backups не отслеживаются.
+- После записи результата этот checkpoint также коммитится и отправляется; bundle/source.zip и SHA256 обновляются. Приватный архив данных остаётся только локально. На новом устройстве можно git clone указанного URL и восстановить приватную копию по DEVICE_TRANSFER.md. Видимость репозитория агентом не менялась.
