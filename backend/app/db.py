@@ -90,7 +90,7 @@ class Job(Base):
 class Budget(Base):
     __tablename__ = 'budgets'
     month: Mapped[str] = mapped_column(String(7), primary_key=True)
-    charged: Mapped[float] = mapped_column(Numeric(12, 6), default=0)
+    charged: Mapped[float] = mapped_column(Numeric(14, 9), default=0)
     video_seconds: Mapped[int] = mapped_column(Integer, default=0)
 
 
@@ -101,7 +101,8 @@ class Usage(Base):
     month: Mapped[str] = mapped_column(ForeignKey('budgets.month'))
     operation: Mapped[str] = mapped_column(String(40))
     model: Mapped[str] = mapped_column(String(80))
-    reserved: Mapped[float] = mapped_column(Numeric(12, 6))
-    actual: Mapped[float | None] = mapped_column(Numeric(12, 6))
+    reserved: Mapped[float] = mapped_column(Numeric(14, 9))
+    actual: Mapped[float | None] = mapped_column(Numeric(14, 9))
     state: Mapped[str] = mapped_column(String(20), default='reserved')
+    details: Mapped[dict] = mapped_column(Json, default=lambda: {'method': 'legacy_unknown'})
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)

@@ -9,9 +9,10 @@ from sqlalchemy.dialects.postgresql import insert
 from . import ai, ingest
 from .config import settings
 from .db import Session, Record, Job, Knowledge, Budget, now
-from .schemas import CVFacts, Ranking, DocumentResult, ExtractedQuestions, Evaluation
+from .schemas import CVFacts, Ranking, DocumentResult, DocumentReview, ExtractedQuestions, Evaluation
+from .documents import fragment_issues, render
 from .store import owned, shared, save_data
-from .retrieval import retrieve, evidence
+from .retrieval import retrieve, evidence, practiced_questions, prioritize_questions
 from .hh import FORMAT_IDS, region_index, resolve_regions, work_formats
 
 
@@ -42,14 +43,36 @@ def parse_cv(job):
 
 
 def rank(job):
+    content = ai.checkpoint(job.id, 'rank-input')
     with Session() as db:
         cv = owned(db, job.payload['cv_id'], job.owner_id, 'cv')
         if cv.status != 'confirmed':
             raise ValueError('Сначала подтвердите профиль резюме')
         vacancies = [owned(db, rid, job.owner_id, 'vacancy') for rid in job.payload['vacancy_ids'][:20]]
-        content = {'facts': cv.data['facts'], 'vacancies': [{'id': v.id, **v.data} for v in vacancies]}
-    result = ai.structured(job.id, 'rank', 'Rank vacancies by confirmed facts only. Give reasons, matching skills and gaps in Russian. '
-        'Include each supplied vacancy ID exactly once.', content, Ranking)
+        if content is None:
+            content = {'facts': cv.data['facts'], 'vacancies': [{'id': v.id, **{k: v.data.get(k, '')
+                for k in ('title', 'description', 'company', 'level', 'direction')}} for v in vacancies]}
+            ai.save_checkpoint(job.id, 'rank-input', content)
+    instruction = ('Rank vacancies by confirmed facts only. Give reasons, matching skills and gaps in Russian. '
+        'Include each supplied vacancy ID exactly once. Score each independently on an absolute 0-100 scale.')
+    # Deterministic batches use the frozen input so retries keep paid steps stable.
+    batches, current = [], []
+    for vacancy in content['vacancies']:
+        candidate = {**content, 'vacancies': current + [vacancy]}
+        if current and len(json.dumps(candidate, ensure_ascii=False).encode()) > 75000:
+            batches.append(current)
+            current = []
+        current.append(vacancy)
+    if current:
+        batches.append(current)
+    matches = []
+    for index, batch in enumerate(batches):
+        step = 'rank' if len(batches) == 1 else f'rank-batch-{index}'
+        result = ai.structured(job.id, step, instruction, {**content, 'vacancies': batch}, Ranking)
+        if len(result.matches) != len(batch) or {m.vacancy_id for m in result.matches} != {v['id'] for v in batch}:
+            raise ValueError('Ранжирование содержит неверные идентификаторы')
+        matches.extend(result.matches)
+    result = Ranking(matches=matches)
     if {m.vacancy_id for m in result.matches} != {v.id for v in vacancies} or len(result.matches) != len(vacancies):
         raise ValueError('Ранжирование содержит неверные идентификаторы')
     with Session.begin() as db:
@@ -69,30 +92,66 @@ def fact_catalog(facts):
 
 
 def document(job):
+    payload = ai.checkpoint(job.id, 'document-input')
     with Session() as db:
         cv = owned(db, job.payload['cv_id'], job.owner_id, 'cv')
         vacancy = owned(db, job.payload['vacancy_id'], job.owner_id, 'vacancy')
         if cv.status != 'confirmed':
             raise ValueError('Подтвердите профиль CV')
         catalog = fact_catalog(cv.data['facts'])
-        payload = {**job.payload, 'facts': catalog, 'vacancy': vacancy.data}
+        if payload is None:
+            payload = {**job.payload, 'facts': catalog, 'vacancy': vacancy.data}
+            ai.save_checkpoint(job.id, 'document-input', payload)
+        catalog = payload['facts']
     result = ai.structured(job.id, 'document', 'Select and order existing fact IDs relevant to the vacancy. '
+        'Translate and rephrase each selected fact into the requested language in fragments. '
+        'Every fragment must reference its exact fact_ids. Cover all selected IDs and use no other IDs. '
         'Do not introduce any new skill, employer, achievement, duration or experience. '
+        'Do not strengthen responsibility, proficiency or results. Preserve names, dates and numbers. '
         'Introduction and closing may express only interest in the role, no factual claims about candidate. '
         'Write in requested language. Explain structural changes.', payload, DocumentResult)
     if any(key not in catalog for key in result.selected_fact_ids):
         raise ValueError('Модель предложила неподтверждённый факт')
-    # Candidate assertions are rendered from confirmed facts, never generated prose.
+    fragments = []
+    if result.fragments:
+        referenced = {key for fragment in result.fragments for key in fragment.fact_ids}
+        if referenced != set(result.selected_fact_ids) or any(key not in catalog for key in referenced):
+            raise ValueError('Фрагменты документа ссылаются на неподтверждённые факты')
+        review = ai.structured(job.id, 'document-review',
+            'Audit each numbered proposed fragment against ONLY its linked source facts. '
+            'Allow faithful translation/paraphrase. Reject invented employers, skills, dates, numbers, '
+            'achievements, proficiency or stronger responsibility. Require the requested language. '
+            'Uncertainty means supported=false; explain issues in Russian. Return each index exactly once.',
+            {'language': job.payload['language'], 'fragments': [{'index': i, 'source': [catalog[k] for k in f.fact_ids],
+                'proposal': f.text} for i, f in enumerate(result.fragments)]}, DocumentReview)
+        if len(review.fragments) != len(result.fragments) or {r.index for r in review.fragments} != set(range(len(result.fragments))):
+            raise ValueError('Неполная проверка фактов документа')
+        reviews = {r.index: r for r in review.fragments}
+        for i, fragment in enumerate(result.fragments):
+            source = '\n'.join(catalog[k] for k in fragment.fact_ids)
+            issues = fragment_issues(source, fragment.text)
+            if not reviews[i].supported or reviews[i].issues:
+                issues += reviews[i].issues or ['Смысл не подтверждён исходными фактами.']
+            fragments.append({'fact_ids': fragment.fact_ids, 'source_text': source,
+                'text': fragment.text, 'proposed_text': fragment.text, 'issues': issues})
+    else:
+        # Backward compatibility with paid checkpoints created before translation.
+        fragments = [{'fact_ids': [key], 'source_text': catalog[key], 'text': catalog[key],
+            'proposed_text': catalog[key], 'issues': []} for key in dict.fromkeys(result.selected_fact_ids)]
     en = job.payload['language'] == 'en'
     if job.payload['kind'] == 'cover_letter':
-        intro = f"I would like to apply for {vacancy.data['title']}." if en else f"Хочу откликнуться на вакансию «{vacancy.data['title']}»."
+        intro = 'I would like to apply for this position.' if en else 'Хочу откликнуться на эту вакансию.'
         closing = 'I would welcome the opportunity to discuss the role.' if en else 'Буду рад обсудить задачи и ожидания на интервью.'
     else:
         intro, closing = ('Relevant experience' if en else 'Релевантный опыт'), ''
-    rendered = '\n\n'.join([intro] + [catalog[key] for key in dict.fromkeys(result.selected_fact_ids)] + ([closing] if closing else []))
+    rendered = render(intro, fragments, closing)
     return result_record(job, 'document', {**job.payload, 'title': result.title, 'text': rendered,
         'original_facts': catalog, 'selected_fact_ids': result.selected_fact_ids, 'changes': result.changes,
-        'versions': [], 'language_note': 'Подтверждённые факты сохранены на исходном языке, чтобы не изменить их смысл.'})
+        'fragments': fragments, 'introduction': intro, 'closing': closing,
+        'requires_confirmation': bool(result.fragments), 'approved': False,
+        'versions': [], 'language_note': 'Сверьте каждый перевод с источником; автоматическая проверка может ошибаться.'
+            if result.fragments else 'Старый результат: факты сохранены на исходном языке.'},
+        'review' if result.fragments else 'draft')
 
 
 def plan(job):
@@ -102,10 +161,11 @@ def plan(job):
         if cv.status != 'confirmed':
             raise ValueError('Подтвердите профиль CV')
         profile = job.payload['profile']
-        query = vacancy.data['description'] + ' ' + ' '.join(vacancy.data.get('match', {}).get('missing_skills', []))
+        query = ' '.join(vacancy.data.get('match', {}).get('missing_skills', [])) + ' ' + vacancy.data['description']
         vector = ai.embed(job.id, 'query-vector', query) if settings.openai_api_key else None
-        rows = retrieve(db, query, profile['direction'], profile['level'], profile['language'], 40, vector)
-        questions = [r for r in rows if r.kind == 'question']
+        rows = retrieve(db, query, profile['direction'], profile['level'], profile['language'], 100, vector, kind='question')
+        history = practiced_questions(db, job.owner_id)
+        questions = prioritize_questions(rows, history)
         if not questions:
             raise ValueError('Нет опубликованных вопросов для выбранных направления, уровня и языка. Администратор должен проверить и опубликовать базу.')
         days = []
@@ -113,10 +173,14 @@ def plan(job):
             question = questions[day % len(questions)]
             q = question.data
             days.append({'day': day + 1, 'title': q['topic'], 'question_id': question.id, 'question': q['question'],
+                'repeat': day >= len(questions) or question.id in history,
+                'repeat_reason': 'Повторение в этом плане' if day >= len(questions) else 'Уже встречался в интервью' if question.id in history else '',
                 'example': q['reference_answer'], 'task': q.get('task') or ('Объясните решение на собственном примере.' if profile['language'] == 'ru' else 'Explain using your own example.'),
                 'materials': [{'id': m['id'], 'url': m['url']} for m in evidence(db, q)], 'done': False})
     return result_record(job, 'plan', {'vacancy_id': vacancy.id, 'days': days, 'profile': profile,
-        'gaps': vacancy.data.get('match', {}).get('missing_skills', []), 'review': 'Дни 6–7 используйте для повторения и пробного интервью.'}, 'ready')
+        'available_questions': len(questions), 'shortage': max(0, 7 - len(questions)),
+        'gaps': vacancy.data.get('match', {}).get('missing_skills', []),
+        'review': f'Подходящих вопросов: {len(questions)}. Повторения отмечены отдельно.'}, 'ready')
 
 
 def evaluate(job):

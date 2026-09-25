@@ -16,3 +16,4 @@ backups/
 *.bundle
 .codex/
 .agents/
+/SHA256.json

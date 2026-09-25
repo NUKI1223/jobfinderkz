@@ -7,12 +7,14 @@ import json
 import math
 import re
 from decimal import Decimal
-from openai import OpenAI
+from openai import OpenAI, APIStatusError
 from sqlalchemy import select, func
 from sqlalchemy.dialects.postgresql import insert
 from .config import settings
 from .db import Session, Job, Usage, Budget, now
 from .providers import RequestRejected, gemini, openai_text
+from .costs import Cost, token_cost
+from . import live_budget
 
 
 def text_available():
@@ -81,7 +83,7 @@ def reserve(key, operation, model, ceiling, video_seconds=0, provider='openai'):
                 Usage.model.like('gemini/%'), Usage.created_at >= start, Usage.state != 'rejected'))
             if count >= settings.gemini_daily_requests:
                 raise Paused('Достигнут дневной лимит Gemini в приложении. Продолжите завтра (UTC).')
-        amount = Decimal(str(ceiling)).quantize(Decimal('0.000001'))
+        amount = Decimal(str(ceiling)).quantize(Decimal('0.000000001'))
         if budget.charged + amount > Decimal(str(settings.monthly_budget_usd)):
             raise Paused('Месячный бюджет исчерпан: новые платные запросы приостановлены')
         if budget.video_seconds + video_seconds > settings.monthly_video_hours * 3600:
@@ -91,8 +93,21 @@ def reserve(key, operation, model, ceiling, video_seconds=0, provider='openai'):
         if existing:
             existing.month, existing.operation, existing.model = month, operation, model
             existing.reserved, existing.actual, existing.state, existing.created_at = amount, None, 'reserved', now()
+            existing.details = {'method': 'pending', 'provider': provider}
         else:
-            db.add(Usage(key=key, month=month, operation=operation, model=model, reserved=amount))
+            db.add(Usage(key=key, month=month, operation=operation, model=model, reserved=amount,
+                         details={'method': 'pending', 'provider': provider}))
+
+
+def reject(key, message):
+    with Session.begin() as db:
+        usage = db.get(Usage, key)
+        budget = db.scalar(select(Budget).where(Budget.month == usage.month).with_for_update())
+        budget.charged -= usage.reserved
+        usage.actual, usage.state = Decimal(0), 'rejected'
+        usage.details = {**usage.details, 'method': 'request_rejected'}
+    live_budget.update(key, actual=0)
+    raise Paused(message) from None
 
 
 def paid(job_id, step, operation, model, ceiling, call, video_seconds=0, provider='openai'):
@@ -102,15 +117,22 @@ def paid(job_id, step, operation, model, ceiling, call, video_seconds=0, provide
     key = f'{job_id}:{step}'
     reserve(key, operation, model, ceiling, video_seconds, provider)
     try:
-        result, actual = call()
-    except RequestRejected as exc:
+        live_budget.update(key, ceiling=ceiling)
+    except Exception:
+        # No provider request was sent; release only the database reservation.
         with Session.begin() as db:
             usage = db.get(Usage, key)
             budget = db.scalar(select(Budget).where(Budget.month == usage.month).with_for_update())
             budget.charged -= usage.reserved
             usage.actual, usage.state = Decimal(0), 'rejected'
-        raise Paused(str(exc)) from None
+        raise
+    try:
+        result, actual = call()
+    except RequestRejected as exc:
+        reject(key, str(exc))
     except Exception as exc:
+        if isinstance(exc, APIStatusError) and exc.status_code in (400, 401, 403, 404, 413, 422, 429):
+            reject(key, f'OpenAI отклонил запрос (HTTP {exc.status_code}). Проверьте ключ, модель и квоту; резерв освобождён.')
         with Session.begin() as db:
             db.get(Usage, key).state = 'uncertain'
         # Do not leak API responses, keys or candidate data into job errors.
@@ -118,12 +140,14 @@ def paid(job_id, step, operation, model, ceiling, call, video_seconds=0, provide
     with Session.begin() as db:
         usage = db.get(Usage, key)
         budget = db.scalar(select(Budget).where(Budget.month == usage.month).with_for_update())
-        cost = Decimal(str(actual)).quantize(Decimal('0.000001'))
+        cost = Decimal(str(actual.usd if isinstance(actual, Cost) else actual)).quantize(Decimal('0.000000001'))
         budget.charged += cost - usage.reserved
         usage.actual, usage.state = cost, 'completed'
+        usage.details = actual.details if isinstance(actual, Cost) else {'method': 'legacy_unknown'}
         job = db.get(Job, job_id)
         job.checkpoints = {**job.checkpoints, step: result}
         job.heartbeat = now()
+    live_budget.update(key, actual=cost)
     return result
 
 
@@ -150,7 +174,10 @@ def structured(job_id, step, instruction, data, schema):
         ceiling = (input_bound * settings.input_usd_per_million + max_output * settings.output_usd_per_million) / 1e6
         call = lambda: openai_text.generate(client(), system, content, schema, max_output)
         model = settings.text_model
-    return schema.model_validate(paid(job_id, step, 'text', model, ceiling, call, provider=settings.text_provider))
+    result = paid(job_id, step, 'text', model, ceiling, call, provider=settings.text_provider)
+    if '_provider_error' in result:
+        raise ValueError(result['_provider_error'])
+    return schema.model_validate(result)
 
 
 def embed(job_id, step, text):
@@ -158,18 +185,27 @@ def embed(job_id, step, text):
     ceiling = (len(text.encode()) + 100) * settings.embed_usd_per_million / 1e6
     def call():
         response = client().embeddings.create(model=settings.embedding_model, input=text, dimensions=1536)
-        return response.data[0].embedding, response.usage.total_tokens * settings.embed_usd_per_million / 1e6
+        return response.data[0].embedding, token_cost(response.usage.total_tokens, 0,
+            settings.embed_usd_per_million, 0, request_id=getattr(response, '_request_id', None))
     return paid(job_id, step, 'embedding', settings.embedding_model, ceiling, call)
 
 
 def transcribe(job_id, step, path, seconds, diarize=False):
+    if not math.isfinite(seconds) or seconds <= 0:
+        raise ValueError('Нужна положительная длительность аудио')
     model = settings.video_audio_model if diarize else settings.answer_audio_model
-    ceiling = math.ceil(seconds / 60) * settings.audio_usd_per_minute
+    rate = settings.video_audio_usd_per_minute if diarize else settings.answer_audio_usd_per_minute
+    ceiling = math.ceil(seconds / 60) * max(settings.audio_usd_per_minute, rate)
     def call():
         with open(path, 'rb') as audio:
             kwargs = {'chunking_strategy': 'auto'} if diarize else {}
             result = client().audio.transcriptions.create(model=model, file=audio,
                 response_format='diarized_json' if diarize else 'json', **kwargs)
-        # Charge the conservative reservation: provider audio usage varies by model.
-        return result.model_dump(), ceiling
+        data = result.model_dump()
+        # Per-minute prices are estimates, not a provider invoice. No minute rounding.
+        cost = Cost(Decimal(str(seconds)) / 60 * Decimal(str(rate)), {
+            'method': 'audio_duration_estimate', 'duration_seconds': seconds,
+            'rates': {'usd_per_minute': rate}, 'provider': 'openai', 'currency': 'USD',
+            'api_usage': data.get('usage'), 'request_id': getattr(result, '_request_id', None)})
+        return data, cost
     return paid(job_id, step, 'video_audio' if diarize else 'answer_audio', model, ceiling, call)

@@ -20,9 +20,10 @@ from .security import current_user, admin, db_session, passwords, digest, new_se
 from .schemas import *
 from .store import owned, shared, record_dict, save_data, enqueue
 from .ingest import youtube_id, extract_cv
-from .retrieval import retrieve, evidence
+from .retrieval import retrieve, evidence, practiced_questions, prioritize_questions
 from .cv_sections import section_draft
 from .ai import text_available
+from .documents import fragment_issues
 
 app = FastAPI(title='JobFinderKZ', version='0.1.0', docs_url='/api/docs')
 app.add_middleware(CORSMiddleware, allow_origins=[settings.app_origin], allow_credentials=True,
@@ -305,9 +306,26 @@ def create_document(body: DocumentRequest, user=Depends(current_user), db=Depend
 
 
 @app.put(PREFIX + '/documents/{document_id}')
-def edit_document(document_id: str, body: EditText, user=Depends(current_user), db=Depends(db_session)):
-    row = owned(db, document_id, user.id, 'document')
-    save_data(row, text=body.text, versions=row.data.get('versions', []) + [{'text': row.data['text'], 'saved_at': now().isoformat()}])
+def edit_document(document_id: str, body: DocumentEdit, user=Depends(current_user), db=Depends(db_session)):
+    row = owned(db, document_id, user.id, 'document', lock=True)
+    fragments = row.data.get('fragments', [])
+    if row.data.get('requires_confirmation'):
+        if not body.confirmed or body.fragment_texts is None or len(body.fragment_texts) != len(fragments):
+            raise HTTPException(422, 'Сверьте фрагменты с исходными фактами и подтвердите документ.')
+        reviewed = []
+        for fragment, corrected in zip(fragments, body.fragment_texts):
+            if not corrected.strip() or len(corrected) > 6000:
+                raise HTTPException(422, 'Исправьте пустой или слишком длинный фрагмент.')
+            if fragment.get('issues') and corrected.strip() == fragment['proposed_text'].strip():
+                raise HTTPException(422, 'Исправьте отмеченные сомнительные фрагменты перед сохранением.')
+            if fragment_issues(fragment['source_text'], corrected):
+                raise HTTPException(422, 'В исправленном фрагменте остаются новые числа или названия.')
+            if corrected not in body.text:
+                raise HTTPException(422, 'В итоговом тексте отсутствует подтверждённый фрагмент.')
+            reviewed.append({**fragment, 'text': corrected, 'approved_at': now().isoformat()})
+        fragments = reviewed
+    save_data(row, text=body.text, fragments=fragments, approved=True,
+        versions=row.data.get('versions', []) + [{'text': row.data['text'], 'fragments': row.data.get('fragments', []), 'saved_at': now().isoformat()}])
     row.status = 'saved'
     db.commit()
     return public_record(row)
@@ -316,6 +334,8 @@ def edit_document(document_id: str, body: EditText, user=Depends(current_user), 
 @app.get(PREFIX + '/documents/{document_id}/export')
 def export_document(document_id: str, user=Depends(current_user), db=Depends(db_session)):
     row = owned(db, document_id, user.id, 'document')
+    if row.data.get('requires_confirmation') and not row.data.get('approved'):
+        raise HTTPException(409, 'Сначала проверьте и сохраните документ.')
     document = Document()
     document.add_heading(row.data['title'], 0)
     for paragraph in row.data['text'].split('\n'):
@@ -354,8 +374,9 @@ def plan_done(plan_id: str, day: int, user=Depends(current_user), db=Depends(db_
 @app.post(PREFIX + '/interviews')
 def interview_create(body: InterviewInput, user=Depends(current_user), db=Depends(db_session)):
     vacancy = owned(db, body.vacancy_id, user.id, 'vacancy')
-    rows = retrieve(db, vacancy.data['description'], body.direction, body.level, body.language, 100)
-    questions = [r for r in rows if r.kind == 'question'][:5]
+    query = ' '.join(vacancy.data.get('match', {}).get('missing_skills', [])) + ' ' + vacancy.data['description']
+    rows = retrieve(db, query, body.direction, body.level, body.language, 100, kind='question')
+    questions = prioritize_questions(rows, practiced_questions(db, user.id))[:5]
     if len(questions) < 5:
         raise HTTPException(409, 'Для интервью нужны 5 опубликованных вопросов выбранного направления, уровня и языка')
     turns = [{'question_id': q.id, 'question': q.data, 'rubric_version': q.data['version'],
@@ -364,6 +385,31 @@ def interview_create(body: InterviewInput, user=Depends(current_user), db=Depend
     db.add(row)
     db.commit()
     return public_record(row)
+
+
+@app.get(PREFIX + '/knowledge/availability')
+def knowledge_availability(user=Depends(current_user), db=Depends(db_session)):
+    rows = db.scalars(select(Record).join(Knowledge, Knowledge.record_id == Record.id)
+        .where(Record.kind == 'question', Record.status == 'published')).all()
+    groups = []
+    for direction in ('frontend', 'python', 'qa'):
+        for level in ('junior', 'middle'):
+            for language in ('ru', 'en'):
+                count = sum(1 for row in rows if all(row.data.get(k) == v for k, v in
+                    [('direction', direction), ('level', level), ('language', language)]))
+                groups.append({'direction': direction, 'level': level, 'language': language,
+                    'questions': count, 'interview_ready': count >= 5, 'missing': max(0, 5-count)})
+    return groups
+
+
+@app.post(PREFIX + '/admin/knowledge/reindex')
+def knowledge_reindex(user=Depends(admin), db=Depends(db_session)):
+    if not settings.openai_api_key:
+        raise HTTPException(409, 'Для индексации добавьте OPENAI_API_KEY')
+    rows = db.scalars(select(Record).join(Knowledge, Knowledge.record_id == Record.id)
+        .where(Record.status == 'published', Knowledge.embedding.is_(None))).all()
+    return {'jobs': [enqueue(db, user.id, 'index_knowledge', {'record_id': row.id, 'version': row.data.get('version', 1)},
+        f'index:{row.id}:{row.data.get("version", 1)}:v2') for row in rows]}
 
 
 @app.post(PREFIX + '/interviews/{interview_id}/answers/{index}')
@@ -553,6 +599,20 @@ def publish(record_id: str, user=Depends(admin), db=Depends(db_session)):
     data = row.data
     if row.kind == 'question':
         q = QuestionInput.model_validate({k: v for k, v in data.items() if k in QuestionInput.model_fields})
+        if q.translation_of:
+            original = shared(db, q.translation_of, 'question')
+            if original.id == row.id or original.status != 'published' or original.data.get('translation_of'):
+                raise HTTPException(422, 'Перевод должен ссылаться на опубликованный исходный вопрос')
+            if original.data['direction'] != q.direction or original.data['level'] != q.level or original.data['language'] == q.language:
+                raise HTTPException(422, 'Направление, уровень и язык перевода не совпадают с оригиналом')
+            duplicate = db.scalar(select(Record).where(Record.kind == 'question', Record.status == 'published',
+                Record.id != row.id, Record.data['translation_of'].as_string() == original.id,
+                Record.data['language'].as_string() == q.language))
+            if duplicate:
+                raise HTTPException(409, 'Перевод этого вопроса на выбранный язык уже опубликован')
+            if not data.get('sources'):
+                row.data = {**data, 'sources': original.data.get('sources', []), 'source_language': original.data['language']}
+                data = row.data
         if q.needs_context or len(q.reference_answer) < 30 or len(q.rubric) < 3 or not q.material_ids:
             raise HTTPException(422, 'Для публикации дополните контекст, эталон, минимум 3 критерия и проверенные материалы')
         for material_id in q.material_ids:
@@ -582,7 +642,14 @@ def usage_summary(user=Depends(admin), db=Depends(db_session)):
     month = now().strftime('%Y-%m')
     budget = db.get(Budget, month)
     usage = db.scalars(select(Usage).where(Usage.month == month).order_by(Usage.created_at.desc())).all()
+    completed = sum(float(u.actual or 0) for u in usage if u.state == 'completed')
+    reserved = sum(float(u.reserved) for u in usage if u.state in ('reserved', 'uncertain'))
+    audio_estimates = sum(float(u.actual or 0) for u in usage
+        if u.state == 'completed' and u.details.get('method') == 'audio_duration_estimate')
     return {'month': month, 'limit': settings.monthly_budget_usd, 'charged_and_reserved': float(budget.charged) if budget else 0,
+        'completed': completed, 'open_reservations': reserved, 'audio_estimates': audio_estimates,
+        'remaining': max(0, settings.monthly_budget_usd - float(budget.charged if budget else 0)),
         'video_hours': budget.video_seconds / 3600 if budget else 0,
         'operations': [{'key': u.key, 'model': u.model, 'state': u.state, 'reserved': float(u.reserved),
-                        'actual': float(u.actual) if u.actual is not None else None} for u in usage]}
+                        'actual': float(u.actual) if u.actual is not None else None,
+                        'operation': u.operation, 'details': u.details} for u in usage]}

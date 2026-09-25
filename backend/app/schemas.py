@@ -70,6 +70,11 @@ class DocumentRequest(Strict):
     language: Language = 'ru'
 
 
+class DocumentFragment(Strict):
+    fact_ids: list[str] = Field(min_length=1, max_length=20)
+    text: str = Field(min_length=1, max_length=6000)
+
+
 class DocumentResult(Strict):
     title: str
     # AI selects verbatim facts; only the connective prose can be generated.
@@ -77,6 +82,23 @@ class DocumentResult(Strict):
     selected_fact_ids: list[str]
     closing: str
     changes: list[str]
+    fragments: list[DocumentFragment] = Field(default_factory=list, max_length=100)
+
+
+class FragmentReview(Strict):
+    index: int = Field(ge=0)
+    supported: bool
+    issues: list[str]
+
+
+class DocumentReview(Strict):
+    fragments: list[FragmentReview]
+
+
+class DocumentEdit(Strict):
+    text: str = Field(min_length=1, max_length=60000)
+    confirmed: bool = False
+    fragment_texts: list[str] | None = Field(default=None, max_length=100)
 
 
 class EditText(Strict):
@@ -112,6 +134,7 @@ class QuestionInput(Strict):
     reference_answer: str = ''
     rubric: list[str] = Field(default_factory=list, max_length=20)
     material_ids: list[str] = Field(default_factory=list, max_length=20)
+    translation_of: str | None = None
 
 
 class ExtractedQuestions(Strict):

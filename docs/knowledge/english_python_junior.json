@@ -1,0 +1,42 @@
+[
+  {
+    "translation_of": "d8dde20e-a402-4c5f-ac07-02b800c87ce4",
+    "topic": "Function decorators",
+    "question": "What is a Python function decorator? How can you apply one without @, and when does decoration happen?",
+    "reference_answer": "A decorator is called with the newly created function, and its return value is bound to the function name. Placing @decorate above def f is equivalent in effect to defining f and then assigning f = decorate(f). Decoration happens when that definition executes, which is often during module import but can also occur inside another function. Calling a wrapper returned by the decorator is a separate event. The decorator need not return a function.",
+    "rubric": ["Explains passing the created function to the decorator and binding its result.", "Shows the equivalent f = decorate(f) assignment without @.", "Places decoration at definition execution and separates it from wrapper invocation.", "Does not claim decoration happens only at import time."],
+    "url": "https://docs.python.org/3/reference/compound_stmts.html#function-definitions"
+  },
+  {
+    "translation_of": "f2dd893d-8dde-42c9-850c-28e1411fe7f5",
+    "topic": "Decorating async functions",
+    "question": "For an ordinary parameterless decorator of an async function, which functions should use def and which should use async def?",
+    "reference_answer": "A conventional decorator uses an outer def that receives the coroutine function and immediately returns an async def wrapper. The wrapper can call and await the original function, for example return await func(*args, **kwargs). Calling an async function produces a coroutine object; await drives it to a result. The outer decorator is not automatically awaited, and an arbitrary blocking function cannot simply be awaited.",
+    "rubric": ["Uses a synchronous outer decorator that returns a wrapper immediately.", "Uses an async wrapper and awaits the original coroutine function.", "Distinguishes creating a coroutine from awaiting its execution.", "Does not claim every blocking operation can be awaited."],
+    "url": "https://docs.python.org/3/library/asyncio-task.html"
+  },
+  {
+    "translation_of": "38e46f2a-6154-4682-8f09-62c829c20c6c",
+    "topic": "Lambda expressions",
+    "question": "What is a Python lambda, what can its body contain, and where is one useful?",
+    "reference_answer": "The expression lambda arguments: expression creates a function whose result is the value of that single expression. Its body cannot be an arbitrary suite of statements; a physical one-line limit is not the rule. A short lambda can serve as a predicate for filter or as a sorting key. For complex logic, a named def is usually clearer.",
+    "rubric": ["Defines lambda as a function expression with arguments and a return value.", "Explains that the body is one expression rather than arbitrary statements.", "Gives a suitable small use such as a predicate or sort key.", "Does not confuse filter's selection with mapping values."],
+    "url": "https://docs.python.org/3/reference/expressions.html#lambda"
+  },
+  {
+    "translation_of": "981f9c41-b5fc-4591-8123-ef06f2b5ca34",
+    "topic": "Context managers",
+    "question": "What problem does a Python context manager solve, and how does with use __enter__ and __exit__?",
+    "reference_answer": "A context manager runs setup and cleanup around a block, often for a resource. with calls __enter__ and binds its return value after as. If entry succeeds, __exit__ runs when the block ends, including when it raises an exception. __exit__ receives exception details or three None values. A truthy return suppresses an exception; a falsey return lets it propagate. For example, with open(path) as file closes the file after the block.",
+    "rubric": ["Explains resource setup and cleanup with an example.", "Identifies __enter__ and the value bound by as.", "Explains __exit__ after successful entry on normal and exceptional exits.", "Distinguishes cleanup from suppressing an exception."],
+    "url": "https://docs.python.org/3/reference/compound_stmts.html#the-with-statement"
+  },
+  {
+    "translation_of": "62aef940-bcad-4970-8e1c-f144e58deff8",
+    "topic": "Cleanup with finally",
+    "question": "How can you clean up a resource without a context manager on normal exit or an exception, and how does finally differ from except?",
+    "reference_answer": "Put cleanup in the finally block of try/finally. During ordinary Python execution it runs when control leaves the try block, including on an exception or return. An except clause handles a matching exception, while finally performs cleanup whether or not one was caught. An uncaught exception normally continues propagating after cleanup. This does not guarantee cleanup when the process is forcibly terminated or power fails; returning from finally can hide an earlier exception.",
+    "rubric": ["Uses try/finally and places cleanup in finally.", "Separates handling in except from unconditional cleanup in finally.", "Explains propagation of an uncaught exception after cleanup.", "Avoids promising cleanup after abrupt process or machine termination."],
+    "url": "https://docs.python.org/3/reference/compound_stmts.html#the-try-statement"
+  }
+]

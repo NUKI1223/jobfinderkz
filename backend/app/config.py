@@ -25,12 +25,19 @@ class Settings(BaseSettings):
     answer_audio_model: str = 'gpt-4o-mini-transcribe'
     video_audio_model: str = 'gpt-4o-transcribe-diarize'
     embedding_model: str = 'text-embedding-3-small'
-    monthly_budget_usd: float = 20
+    monthly_budget_usd: float = Field(default=20, gt=0, le=20)
     monthly_video_hours: float = 20
-    input_usd_per_million: float = 1
-    output_usd_per_million: float = 6
-    embed_usd_per_million: float = 0.1
-    audio_usd_per_minute: float = 0.02
+    input_usd_per_million: float = Field(default=0.75, ge=0)
+    cached_input_usd_per_million: float = Field(default=0.075, ge=0)
+    output_usd_per_million: float = Field(default=4.50, ge=0)
+    embed_usd_per_million: float = Field(default=0.02, ge=0)
+    # Reservation is deliberately separate from duration-based estimates.
+    audio_usd_per_minute: float = Field(default=0.02, gt=0)
+    answer_audio_usd_per_minute: float = Field(default=0.003, ge=0)
+    video_audio_usd_per_minute: float = Field(default=0.006, ge=0)
+    live_check_mode: bool = False
+    live_check_budget_usd: float = Field(default=2, gt=0, le=2)
+    live_check_ledger: Path = Path('/storage/live-check-budget.json')
     allowed_material_hosts: str = 'developer.mozilla.org,docs.python.org,react.dev,playwright.dev,docs.pytest.org'
 
 

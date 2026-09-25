@@ -15,6 +15,7 @@ def isolated_database(tmp_path, monkeypatch):
     monkeypatch.setattr(settings, 'openai_api_key', '')
     monkeypatch.setattr(settings, 'gemini_api_key', '')
     monkeypatch.setattr(settings, 'text_provider', 'openai')
+    monkeypatch.setattr(settings, 'live_check_mode', False)
     monkeypatch.setattr(settings, 'admin_email', 'owner@example.com')
     attempts.clear()
     yield

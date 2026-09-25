@@ -34,6 +34,8 @@ test('full journey, microphone denial, session continuation and statistics',asyn
   await page.getByRole('button',{name:'Подготовить отклик'}).click()
   await page.getByRole('button',{name:'Подготовить черновик'}).click()
   await expect(page.getByLabel('Редактор документа')).toHaveValue(/Python/)
+  await expect(page.getByRole('link',{name:'Скачать DOCX'})).toHaveCount(0)
+  await page.getByLabel('Я сверил перевод и итоговый текст с исходными фактами').check()
   await page.getByRole('button',{name:'Сохранить',exact:true}).click()
   const downloadPromise=page.waitForEvent('download')
   await page.getByRole('link',{name:'Скачать DOCX'}).click()
@@ -116,6 +118,7 @@ test('vacancy search sends selected profile overrides',async({page})=>{
   const pending=page.waitForRequest(r=>r.url().endsWith('/vacancies/hh/sync')&&r.method()==='POST')
   await page.getByRole('button',{name:'Обновить вакансии',exact:true}).click()
   const request=await pending
+  expect(request.headers()['idempotency-key']).toBeTruthy()
   expect(request.postDataJSON()).toMatchObject({regions:['Алматы'],direction:'qa',level:'middle',work_format:'hybrid'})
   expect(request.postDataJSON()).not.toHaveProperty('area')
 })
@@ -177,4 +180,25 @@ test('administrator reviews extracted question before publishing',async({page})=
   await page.getByRole('button',{name:'Проверено · опубликовать',exact:true}).click()
   await expect(question).toContainText('Опубликовано')
   await expect(page.getByRole('link',{name:'Исходное обсуждение 1'})).toHaveAttribute('href',/t=1s/)
+})
+
+test('lost response retry reuses paid action key',async({page})=>{
+  await register(page,`retry-${Date.now()}@example.com`)
+  await page.getByRole('button',{name:'Вакансии',exact:true}).click()
+  const keys:string[]=[]
+  await page.route('**/api/v1/vacancies/hh/sync',async route=>{
+    keys.push(route.request().headers()['idempotency-key'])
+    const response=await route.fetch()
+    if(keys.length===1) await route.abort('failed')
+    else await route.fulfill({response})
+  })
+  await page.getByRole('button',{name:'Обновить вакансии',exact:true}).click()
+  await expect(page.getByRole('alert')).toBeVisible()
+  await page.getByRole('button',{name:'Обновить вакансии',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'Python developer',exact:true})).toBeVisible()
+  expect(keys.length).toBe(2)
+  expect(keys[0]).toBeTruthy()
+  expect(keys[0]).toBe(keys[1])
+  const jobs=await (await page.request.get('/api/v1/jobs')).json()
+  expect(jobs.filter((j:any)=>j.kind==='hh_sync')).toHaveLength(1)
 })

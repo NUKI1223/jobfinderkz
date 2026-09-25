@@ -2,6 +2,7 @@
 import httpx
 from . import RequestRejected
 from ..config import settings
+from ..costs import token_cost
 
 
 def generate(system, content, schema, max_output):
@@ -34,7 +35,9 @@ def generate(system, content, schema, max_output):
     usage = data.get('usageMetadata', {})
     if not settings.gemini_free_tier and ('promptTokenCount' not in usage or 'candidatesTokenCount' not in usage):
         raise ValueError('Gemini не вернул сведения о расходе')
-    cost = 0 if settings.gemini_free_tier else (
-        usage['promptTokenCount'] * settings.gemini_input_usd_per_million
-        + (usage['candidatesTokenCount'] + usage.get('thoughtsTokenCount', 0)) * settings.gemini_output_usd_per_million) / 1e6
+    cost = token_cost(usage.get('promptTokenCount', 0),
+        usage.get('candidatesTokenCount', 0) + usage.get('thoughtsTokenCount', 0),
+        0 if settings.gemini_free_tier else settings.gemini_input_usd_per_million,
+        0 if settings.gemini_free_tier else settings.gemini_output_usd_per_million,
+        reasoning_tokens=usage.get('thoughtsTokenCount', 0), provider='gemini')
     return parsed.model_dump(), cost

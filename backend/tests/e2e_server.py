@@ -3,6 +3,7 @@
 External AI responses are fixed here; actual API, DB, sessions and worker run.
 """
 import threading
+import os
 import time
 import uvicorn
 from sqlalchemy import text
@@ -10,7 +11,7 @@ from app.db import engine, Session, Record, Knowledge
 from app.main import app
 from app.config import settings
 from app import ai, tasks
-from app.schemas import CVFacts, DocumentResult, Ranking, Evaluation, ExtractedQuestions, QuestionInput
+from app.schemas import CVFacts, DocumentResult, DocumentFragment, DocumentReview, FragmentReview, Ranking, Evaluation, ExtractedQuestions, QuestionInput
 from app.worker import run_once
 
 assert engine.url.database == 'jobfinder_test'
@@ -27,7 +28,12 @@ def fixed_response(job_id, step, instruction, data, schema):
                        education=['Курс Python'], projects=['Трекер задач'], languages=['Русский'])
     if schema is DocumentResult:
         return DocumentResult(title='Сопроводительное письмо', introduction='', selected_fact_ids=['skills:0', 'projects:0'],
-                              closing='', changes=['Выделены навыки Python и учебный проект'])
+            closing='', changes=['Выделены навыки Python и учебный проект'],
+            fragments=[DocumentFragment(fact_ids=['skills:0'], text='Python'),
+                       DocumentFragment(fact_ids=['projects:0'], text='Трекер задач')])
+    if schema is DocumentReview:
+        return DocumentReview(fragments=[FragmentReview(index=i, supported=True, issues=[])
+            for i in range(len(data['fragments']))])
     if schema is Ranking:
         return Ranking(matches=[{'vacancy_id': v['id'], 'score': 75, 'reasons': ['Подходит опыт Python'],
              'matching_skills': ['Python'], 'missing_skills': ['pytest']} for v in data['vacancies']])
@@ -87,4 +93,4 @@ def worker():
 if __name__ == '__main__':
     seed()
     threading.Thread(target=worker, daemon=True).start()
-    uvicorn.run(app, host='0.0.0.0', port=8000)
+    uvicorn.run(app, host='127.0.0.1' if os.getenv('E2E_PORT') else '0.0.0.0', port=int(os.getenv('E2E_PORT', '8000')))
