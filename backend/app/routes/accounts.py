@@ -73,5 +73,3 @@ def delete_account(response: Response, user=Depends(current_user), db=Depends(db
     db.commit()
     response.delete_cookie('jf_session', path='/')
     return {'ok': True}
-
-

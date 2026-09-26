@@ -161,5 +161,3 @@ def index_knowledge(job, *, sessions=Session, embedding: EmbeddingPort = ai):
         else:
             return {'record_id': row.id, 'skipped': 'revision_changed'}
     return {'record_id': row.id}
-
-

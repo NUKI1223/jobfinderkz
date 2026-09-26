@@ -122,5 +122,3 @@ def fact_catalog(facts):
             if value:
                 catalog[f'{field}:{index}'] = value
     return catalog
-
-

@@ -100,5 +100,3 @@ def document(job, *, sessions=Session, text: TextPort = ai):
         'versions': [], 'language_note': 'Сверьте каждый перевод с источником; автоматическая проверка может ошибаться.'
             if result.fragments else 'Старый результат: факты сохранены на исходном языке.'},
         'review' if result.fragments else 'draft')
-
-

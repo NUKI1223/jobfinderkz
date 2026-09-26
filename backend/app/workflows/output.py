@@ -12,5 +12,3 @@ def result_record(job, kind, data, status='draft', *, sessions=Session):
             db.add(row)
             db.flush()
         return {'record_id': row.id}
-
-

@@ -31,5 +31,3 @@ def usage_summary(user=Depends(admin), db=Depends(db_session)):
 @router.post(PREFIX + '/admin/usage/{usage_key}/reconcile')
 def reconcile_usage(usage_key: str, body: Reconciliation, user=Depends(admin), db=Depends(db_session)):
     return reconcile(db, usage_key, body, user.id)
-
-

@@ -31,5 +31,3 @@ def resume_job(job_id: str, user=Depends(current_user), db=Depends(db_session)):
     job.status, job.error = 'queued', None
     db.commit()
     return job_dict(job)
-
-

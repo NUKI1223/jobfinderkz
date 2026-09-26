@@ -79,5 +79,3 @@ def job_dict(job):
 def json_key(value):
     import json
     return json.dumps(value, sort_keys=True)
-
-

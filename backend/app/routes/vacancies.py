@@ -66,5 +66,3 @@ def connections(user=Depends(current_user), db=Depends(db_session)):
         'text_provider': settings.text_provider, 'gemini_free_tier': settings.text_provider == 'gemini' and settings.gemini_free_tier,
         'audio': bool(settings.openai_api_key), 'embeddings': bool(settings.openai_api_key), 'hh': bool(settings.hh_access_token),
         'hh_last': {'status': last.status, 'error': last.error, 'created_at': last.created_at.isoformat()} if last else None}
-
-

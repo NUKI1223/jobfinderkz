@@ -99,5 +99,3 @@ def audio_answer(job, *, sessions=Session):
             turns[index] = {**turns[index], 'transcript': result['text']}
             save_data(row, turns=turns)
     return result
-
-

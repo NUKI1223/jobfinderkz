@@ -190,5 +190,3 @@ def publish(record_id: str, user=Depends(admin), db=Depends(db_session)):
     db.commit()
     indexing = submit_job(db, user.id, 'index_knowledge', {'record_id': row.id, 'version': row.data['version']}, f'index:{row.id}:{row.data["version"]}:v2') if settings.openai_api_key else None
     return {'record': record_dict(row), 'indexing': indexing}
-
-

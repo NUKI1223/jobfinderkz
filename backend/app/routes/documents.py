@@ -44,5 +44,3 @@ def export_document(document_id: str, user=Depends(current_user), db=Depends(db_
     output.seek(0)
     return StreamingResponse(output, media_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                              headers={'Content-Disposition': 'attachment; filename="jobfinder-document.docx"'})
-
-

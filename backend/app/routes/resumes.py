@@ -78,5 +78,3 @@ def cv_sections(cv_id: str, user=Depends(current_user), db=Depends(db_session)):
     row.status = 'review'
     db.commit()
     return public_record(row)
-
-

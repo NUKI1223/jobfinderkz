@@ -113,5 +113,3 @@ def statistics(direction: Direction = 'frontend', level: Level = 'junior', langu
             timeline.append({'id': row.id, 'date': row.created_at.isoformat(), 'score': round(sum(scores) / len(scores), 2), 'answers': len(scores)})
     return {'timeline': timeline, 'topics': [{'topic': k, 'score': round(sum(v) / len(v), 2), 'answers': len(v)} for k, v in topics.items()],
             'errors': sorted([{'error': k, 'count': v} for k, v in errors.items()], key=lambda e: -e['count'])}
-
-
