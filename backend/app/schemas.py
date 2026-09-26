@@ -1,5 +1,5 @@
-from typing import Literal
-from pydantic import BaseModel, Field, ConfigDict, field_validator
+from typing import Literal, Annotated
+from pydantic import BaseModel, Field, ConfigDict, field_validator, model_validator
 
 Direction = Literal['frontend', 'python', 'qa']
 Level = Literal['junior', 'middle']
@@ -31,13 +31,23 @@ class Profile(Strict):
     language: Language = 'ru'
 
 
+CVItem = Annotated[str, Field(max_length=6000)]
+
+
 class CVFacts(Strict):
     summary: str = Field(max_length=6000)
-    skills: list[str] = Field(max_length=100)
-    experience: list[str] = Field(max_length=50)
-    education: list[str] = Field(max_length=30)
-    projects: list[str] = Field(max_length=50)
-    languages: list[str] = Field(max_length=20)
+    skills: list[CVItem] = Field(max_length=100)
+    experience: list[CVItem] = Field(max_length=50)
+    education: list[CVItem] = Field(max_length=30)
+    projects: list[CVItem] = Field(max_length=50)
+    languages: list[CVItem] = Field(max_length=20)
+
+    @model_validator(mode='after')
+    def total_size(self):
+        values = self.model_dump()
+        if sum(len(x) for v in values.values() for x in (v if isinstance(v, list) else [v])) > 60000:
+            raise ValueError('Суммарный размер фактов CV ограничен 60000 символами')
+        return self
 
 
 class CVText(Strict):
@@ -82,7 +92,7 @@ class DocumentResult(Strict):
     selected_fact_ids: list[str]
     closing: str
     changes: list[str]
-    fragments: list[DocumentFragment] = Field(default_factory=list, max_length=100)
+    fragments: list[DocumentFragment] = Field(default_factory=list, max_length=500)
 
 
 class FragmentReview(Strict):
@@ -96,6 +106,7 @@ class DocumentReview(Strict):
 
 
 class DocumentEdit(Strict):
+    accept_user_claims: bool = False
     text: str = Field(min_length=1, max_length=60000)
     confirmed: bool = False
     fragment_texts: list[str] | None = Field(default=None, max_length=100)
@@ -123,6 +134,7 @@ class QuestionInput(Strict):
     candidate_answer: str = ''
     interviewer_notes: str = ''
     task: str = ''
+    task_solution: str = Field(default='', max_length=30000)
     topic: str = Field(min_length=2, max_length=150)
     direction: Direction
     level: Level
@@ -186,3 +198,5 @@ class HHQuery(Strict):
     direction: Direction = 'frontend'
     level: Level = 'junior'
     work_format: Literal['remote', 'office', 'hybrid', 'any'] = 'any'
+    max_results: Literal[20, 50, 100] = 50
+    experience_scope: Literal['strict', 'broader'] = 'broader'

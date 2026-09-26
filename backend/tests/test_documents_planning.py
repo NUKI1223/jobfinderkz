@@ -23,7 +23,7 @@ def test_translated_document_requires_review_and_blocks_new_claims(client, user,
     bad = {'text': doc['text'], 'confirmed': True, 'fragment_texts': [doc['fragments'][0]['text']]}
     assert client.put('/api/v1/documents/' + doc_id, json=bad).status_code == 422
     corrected = 'Task tracker using PostgreSQL'
-    good = {'text': corrected, 'confirmed': True, 'fragment_texts': [corrected]}
+    good = {'text': corrected, 'confirmed': True, 'accept_user_claims': True, 'fragment_texts': [corrected]}
     assert client.put('/api/v1/documents/' + doc_id, json=good).status_code == 200
     assert client.get(f'/api/v1/documents/{doc_id}/export').content[:2] == b'PK'
     with Session() as db:

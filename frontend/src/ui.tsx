@@ -1,0 +1,13 @@
+import { ProfileData, User, AuthResult, CVFacts, ParseDraft, Fragment, DocumentBlock, Turn, Job, Connections, Availability, Statistics, UsageSummary, UsageOperation, QuestionInput, SourceRef, Segment, Workspace, Direction, Level, Language, Evaluation } from './models'
+import React, { useEffect, useRef, useState } from 'react'
+import { ArrowUpRight, ArrowRight, BriefcaseBusiness, Check, ChevronRight, FileText, GraduationCap, LayoutDashboard, LogOut, Mic, Plus, Search, Settings, ShieldCheck, Sparkles, TrendingUp, Upload, X, Play, Square, Bookmark, ExternalLink, LoaderCircle, CheckCircle2, Clock3, Headphones } from 'lucide-react'
+import { api, setCSRF, setRequestScope, fileBody, Entry, directionName, statusName } from './api'
+export function Field({label,children}:{label:string;children:React.ReactNode}) {
+  const id=React.useId()
+  return <div className="field"><label htmlFor={id}>{label}</label>{React.isValidElement(children)?React.cloneElement(children as React.ReactElement<{id?:string}>,{id}):children}</div>
+}
+export function Badge({status}:{status:string}) {return <span className={'badge '+status}>{statusName[status]||status}</span>}
+export function Empty({title,text,icon:Icon=FileText}:{title:string;text:string;icon?:typeof FileText}) {return <div className="empty"><div className="empty-icon"><Icon size={27}/></div><h3>{title}</h3><p>{text}</p></div>}
+export function Filters<T extends Pick<ProfileData,'direction'|'level'|'language'>>({value,onChange}:{value:T;onChange:(v:T)=>void}) {return <div className="form-row"><Field label="Направление"><select value={value.direction} onChange={e=>onChange({...value,direction:e.target.value as Direction})}>{Object.entries(directionName).map(([k,v])=><option key={k} value={k}>{v as string}</option>)}</select></Field><Field label="Уровень"><select value={value.level} onChange={e=>onChange({...value,level:e.target.value as Level})}><option value="junior">Junior</option><option value="middle">Middle</option></select></Field><Field label="Язык"><select value={value.language} onChange={e=>onChange({...value,language:e.target.value as Language})}><option value="ru">Русский</option><option value="en">English</option></select></Field></div>}
+export function VacancySelect({rows,value,set}:{rows:Entry<'vacancy'>[];value:string;set:(id:string)=>void}) {return <Field label="Вакансия"><select required value={value} onChange={e=>set(e.target.value)}><option value="">Выберите вакансию</option>{rows.map(r=><option key={r.id} value={r.id}>{r.data.title} · {r.data.company}</option>)}</select></Field>}
+

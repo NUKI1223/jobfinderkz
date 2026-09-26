@@ -15,6 +15,7 @@ from app.schemas import CVFacts, DocumentResult, DocumentFragment, DocumentRevie
 from app.worker import run_once
 
 assert engine.url.database == 'jobfinder_test'
+assert os.getenv('ALLOW_DESTRUCTIVE_TESTS') == '1' and engine.url.username == 'test', 'Use compose.test.yaml'
 settings.admin_email = 'owner@example.com'
 settings.openai_api_key = 'e2e-fixed-provider'
 settings.gemini_api_key = ''
@@ -66,7 +67,7 @@ tasks.HANDLERS['hh_sync'] = fixed_hh
 
 def seed():
     with engine.begin() as connection:
-        connection.execute(text('TRUNCATE users, records, jobs, knowledge, sessions, usage, budgets CASCADE'))
+        connection.execute(text('TRUNCATE global_operations, users, records, jobs, knowledge, sessions, usage, budgets CASCADE'))
     with Session.begin() as db:
         material = Record(kind='material', status='published', data={'url': 'https://docs.python.org/3/library/sqlite3.html',
             'title': 'TEST FIXTURE — Transactions', 'text': 'A transaction commits or rolls back all changes together.',
@@ -78,7 +79,7 @@ def seed():
                 'topic': 'Транзакции', 'direction': 'python', 'level': 'junior', 'language': 'ru',
                 'reference_answer': 'Транзакция объединяет изменения: commit фиксирует их, rollback отменяет.',
                 'rubric': ['Атомарность', 'Commit', 'Rollback'], 'material_ids': [material.id],
-                'version': 1, 'sources': [], 'task': '', 'needs_context': False})
+                'version': 1, 'sources': [], 'task': 'Напишите пример rollback.' if i == 0 else '', 'needs_context': False})
             db.add(q)
             db.flush()
             db.add(Knowledge(record_id=q.id, text=q.data['question'], direction='python', level='junior', language='ru'))

@@ -19,7 +19,19 @@ $apiContainer = (& docker compose ps -a -q api).Trim()
 if ($LASTEXITCODE -ne 0 -or -not $apiContainer) { throw 'An API container with the storage volume is required' }
 $dumpName = '/tmp/jobfinder-transfer-' + [guid]::NewGuid().ToString('N') + '.dump'
 try {
-    if ($writers.Count) { Invoke-DockerChecked -DockerArgs (@('compose', 'stop') + $writers) }
+    if ('api' -in $writers) { Invoke-DockerChecked -DockerArgs @('compose', 'stop', '-t', '120', 'api') }
+    if ('worker' -in $writers) {
+        $workerContainer = (& docker compose ps -q worker).Trim()
+        Invoke-DockerChecked -DockerArgs @('kill', '--signal=TERM', $workerContainer)
+        $deadline = (Get-Date).AddMinutes(15)
+        do {
+            $state = (& docker inspect --format '{{json .State}}' $workerContainer) | ConvertFrom-Json
+            if (-not $state.Running) { break }
+            if ((Get-Date) -gt $deadline) { throw 'Worker drain timed out; backup aborted without forcing termination' }
+            Start-Sleep -Seconds 1
+        } while ($true)
+        if ($state.ExitCode -ne 0) { throw 'Worker did not stop cleanly; inspect unfinished operations' }
+    }
     Invoke-DockerChecked -DockerArgs @('exec', $dbContainer, 'pg_dump', '-U', 'jobfinder', '-d', 'jobfinder', '-Fc', '-f', $dumpName)
     Invoke-DockerChecked -DockerArgs @('exec', $dbContainer, 'pg_restore', '--list', $dumpName) | Out-Null
     Invoke-DockerChecked -DockerArgs @('cp', "${dbContainer}:$dumpName", (Join-Path $backupFolder 'jobfinder.dump'))

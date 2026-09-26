@@ -73,3 +73,46 @@ def test_request_uses_profile_regions_when_not_overridden(client, user):
     result = client.post('/api/v1/vacancies/hh/sync', json={'text': 'Python'}).json()
     with Session() as db:
         assert db.get(Job, result['job_id']).payload['regions'] == ['Алматы']
+
+
+def test_sync_paginates_and_resumes_after_second_page_failure(client, user, monkeypatch):
+    monkeypatch.setattr(settings, 'hh_access_token', 'fixture-token')
+    requests, fail_page = [], [True]
+
+    def respond(request):
+        requests.append(request)
+        if request.url.path == '/areas':
+            return httpx.Response(200, json=TREE)
+        if request.url.path == '/vacancies':
+            page = int(request.url.params['page'])
+            if page == 1 and fail_page[0]:
+                return httpx.Response(503)
+            ids = range(1000 + page * 50, 1050 + page * 50) if page == 0 else range(1050, 1055)
+            return httpx.Response(200, json={'items': [{'id': str(rid)} for rid in ids], 'pages': 2})
+        rid = request.url.path.rsplit('/', 1)[-1]
+        return httpx.Response(200, json={**ITEM, 'id': rid})
+
+    original = httpx.Client
+    monkeypatch.setattr(tasks.httpx, 'Client', lambda **kw: original(transport=httpx.MockTransport(respond), **kw))
+    with Session.begin() as db:
+        job = Job(owner_id=user['id'], kind='hh_sync', request_key=uid(), payload={'text': 'Python',
+            'regions': ['Алматы'], 'level': 'junior', 'direction': 'python',
+            'work_format': 'any', 'max_results': 100, 'experience_scope': 'broader'})
+        db.add(job)
+        db.flush()
+    with pytest.raises(ValueError, match='503'):
+        tasks.hh_sync(job)
+    fail_page[0] = False
+    assert tasks.hh_sync(job)['count'] == 55
+    queries = [r for r in requests if r.url.path == '/vacancies']
+    assert [r.url.params['page'] for r in queries] == ['0', '1', '1']
+    assert all(r.url.params['per_page'] == '50' for r in queries)
+    assert all(r.url.params.get_list('experience') == ['noExperience', 'between1And3'] for r in queries)
+    with Session() as db:
+        assert len(db.scalars(select(Record).where(Record.kind == 'vacancy')).all()) == 55
+
+
+def test_sync_scope_is_bounded(client, user):
+    body = {'text': 'Python', 'max_results': 101}
+    assert client.post('/api/v1/vacancies/hh/sync', json=body).status_code == 422
+    assert client.post('/api/v1/vacancies/hh/sync', json={'text': 'Python', 'experience_scope': 'all'}).status_code == 422

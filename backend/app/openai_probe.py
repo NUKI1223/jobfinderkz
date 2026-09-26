@@ -21,12 +21,15 @@ from .db import Session, User, Job, Usage
 from . import ai
 from .schemas import CVFacts, Evaluation, DocumentResult, DocumentReview
 from .documents import fragment_issues
+from .probe_checks import exit_status, speech_terms
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--audio-ru', type=Path)
     parser.add_argument('--audio-en', type=Path)
+    parser.add_argument('--expected-ru', default='python,функц,контекст', help='Comma-separated expected technical terms/stems in synthetic RU fixture')
+    parser.add_argument('--expected-en', default='python,function,context', help='Expected technical terms/stems in synthetic EN fixture')
     parser.add_argument('--documents-only', action='store_true', help='Resume only steps not previously attempted after an unknown result')
     args = parser.parse_args()
     if not settings.openai_api_key:
@@ -50,7 +53,7 @@ def main():
                 {'text': 'Synthetic candidate. Python and SQL. Built a task tracker as a course project. No commercial experience.'}, CVFacts)
             report['checks']['text'] = 'Python' in ' '.join(facts.skills)
             vector = ai.embed(job_id, 'embedding', 'Python functions and context managers')
-            report['checks']['embedding_dimensions'] = len(vector)
+            report['checks']['embedding_dimensions'] = len(vector) == 1536
             rubric = ['Identifies __enter__ and __exit__', 'Explains cleanup after successful entry including exceptions',
                       'Explains truthy __exit__ return suppresses an exception']
             reference = ('A with statement calls __enter__, then __exit__ on leaving the block after successful entry. '
@@ -123,7 +126,7 @@ def main():
             duration = float(subprocess.check_output(['ffprobe', '-v', 'error', '-show_entries',
                 'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', str(path)], text=True))
             transcription = ai.transcribe(job_id, 'speech-' + language, path, duration)
-            report['checks']['audio_' + language] = bool(transcription.get('text', '').strip())
+            report['checks']['audio_' + language] = speech_terms(transcription.get('text', ''), [t.strip() for t in getattr(args, 'expected_' + language).split(',') if t.strip()])
     except (ai.Paused, ai.Uncertain, ValueError) as exc:
         report['stopped'] = str(exc)
     with Session() as db:
@@ -131,7 +134,8 @@ def main():
         report['calculated_usd'] = float(sum(u.actual or 0 for u in usage))
         report['open_reservations_usd'] = float(sum(u.reserved for u in usage if u.state in ('reserved', 'uncertain')))
     print(json.dumps(report, ensure_ascii=False, indent=2))
+    return exit_status(report)
 
 
 if __name__ == '__main__':
-    main()
+    raise SystemExit(main())

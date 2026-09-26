@@ -1,5 +1,13 @@
 import logging
 import time
+import signal
+from threading import Event
+
+stopping = Event()
+
+def request_stop(*_):
+    stopping.set()
+
 from sqlalchemy import select, text
 from .db import Session, Job, engine, now
 from .tasks import HANDLERS
@@ -9,10 +17,14 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(mess
 
 
 def run_once():
+    if stopping.is_set():
+        return False
     with Session() as db:
         jobs = db.scalars(select(Job).where(Job.status.in_(['queued', 'running']))
-                          .order_by(Job.created_at).limit(50)).all()
+                          .order_by(Job.created_at, Job.id)).all()
     for candidate in jobs:
+        if stopping.is_set():
+            return False
         # Session advisory locks survive transaction commits but disappear if worker dies.
         # Hold a dedicated connection, never return a locked connection to the pool.
         with engine.connect() as lock:
@@ -74,10 +86,12 @@ def run_once():
 
 
 if __name__ == '__main__':
-    while True:
+    signal.signal(signal.SIGTERM, request_stop)
+    signal.signal(signal.SIGINT, request_stop)
+    while not stopping.is_set():
         try:
             if not run_once():
-                time.sleep(2)
+                stopping.wait(2)
         except Exception as exc:
             logging.error('Worker connection failure: %s', type(exc).__name__)
-            time.sleep(5)
+            stopping.wait(5)

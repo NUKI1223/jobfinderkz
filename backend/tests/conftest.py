@@ -1,3 +1,4 @@
+import os
 import pytest
 from sqlalchemy import text
 from fastapi.testclient import TestClient
@@ -8,9 +9,10 @@ from app.config import settings
 
 @pytest.fixture(autouse=True)
 def isolated_database(tmp_path, monkeypatch):
+    assert os.getenv('ALLOW_DESTRUCTIVE_TESTS') == '1' and engine.url.username == 'test', 'Use only compose.test.yaml isolated fixtures'
     assert engine.url.database == 'jobfinder_test', 'Tests must never run against the application database'
     with engine.begin() as connection:
-        connection.execute(text('TRUNCATE users, records, jobs, knowledge, sessions, usage, budgets CASCADE'))
+        connection.execute(text('TRUNCATE global_operations, users, records, jobs, knowledge, sessions, usage, budgets CASCADE'))
     monkeypatch.setattr(settings, 'storage_path', tmp_path)
     monkeypatch.setattr(settings, 'openai_api_key', '')
     monkeypatch.setattr(settings, 'gemini_api_key', '')

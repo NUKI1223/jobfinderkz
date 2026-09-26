@@ -14,6 +14,7 @@ services:
       interval: 5s
       retries: 20
   migrate:
+    image: jobfinderkz-backend:local
     build: ./backend
     env_file: .env
     environment: &backend-env
@@ -23,6 +24,7 @@ services:
     depends_on:
       db: {condition: service_healthy}
   api:
+    image: jobfinderkz-backend:local
     build: ./backend
     env_file: .env
     environment: *backend-env
@@ -37,6 +39,8 @@ services:
       interval: 10s
       retries: 10
   worker:
+    stop_grace_period: 15m
+    image: jobfinderkz-backend:local
     build: ./backend
     env_file: .env
     environment: *backend-env

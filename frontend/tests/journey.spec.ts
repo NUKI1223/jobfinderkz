@@ -6,7 +6,7 @@ async function register(page:Page,email:string) {
   await page.getByLabel('Email',{exact:true}).fill(email)
   await page.getByLabel('Пароль',{exact:true}).fill('browser-test-pass-42')
   await page.getByRole('button',{name:'Создать аккаунт'}).click()
-  await expect(page.getByRole('heading',{name:'Ваш следующий шаг — ближе'})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'Обзор',exact:true})).toBeVisible()
 }
 
 test('full journey, microphone denial, session continuation and statistics',async({page})=>{
@@ -22,6 +22,7 @@ test('full journey, microphone denial, session continuation and statistics',asyn
   await page.getByLabel('Текст резюме',{exact:true}).fill('Разработчик Python. Учебный трекер задач на Python и PostgreSQL. Закончил курс Python.')
   await page.getByRole('button',{name:'Добавить текст'}).click()
   await page.getByRole('button',{name:'Извлечь факты с ИИ'}).click()
+  await page.getByRole('button',{name:'Проверить этот черновик в редакторе'}).click()
   await expect(page.getByLabel('Кратко о себе')).toHaveValue('Разработчик Python')
   await page.getByRole('button',{name:'Подтвердить факты'}).click()
   await expect(page.getByRole('status').filter({hasText:'Профиль резюме подтверждён'})).toBeVisible()
@@ -35,7 +36,7 @@ test('full journey, microphone denial, session continuation and statistics',asyn
   await page.getByRole('button',{name:'Подготовить черновик'}).click()
   await expect(page.getByLabel('Редактор документа')).toHaveValue(/Python/)
   await expect(page.getByRole('link',{name:'Скачать DOCX'})).toHaveCount(0)
-  await page.getByLabel('Я сверил перевод и итоговый текст с исходными фактами').check()
+  await page.getByLabel('Я проверил и подтверждаю итоговый текст').check()
   await page.getByRole('button',{name:'Сохранить',exact:true}).click()
   const downloadPromise=page.waitForEvent('download')
   await page.getByRole('link',{name:'Скачать DOCX'}).click()
@@ -73,7 +74,7 @@ test('full journey, microphone denial, session continuation and statistics',asyn
   await page.getByLabel('Email',{exact:true}).fill(email)
   await page.getByLabel('Пароль',{exact:true}).fill('browser-test-pass-42')
   await page.getByRole('button',{name:'Войти',exact:true}).click()
-  await expect(page.getByRole('heading',{name:'Ваш следующий шаг — ближе'})).toBeVisible()
+  await expect(page.getByRole('heading',{name:'Обзор',exact:true})).toBeVisible()
   await expect(page.getByRole('alert')).toHaveCount(0)
   await page.screenshot({path:'test-results/dashboard-desktop.png',fullPage:true})
   expect(errors).toEqual([])
@@ -87,6 +88,37 @@ test('mobile layout and navigation',async({page})=>{
   await page.getByRole('button',{name:'Моё резюме',exact:true}).click()
   await expect(page.getByRole('heading',{name:'Добавьте резюме'})).toBeVisible()
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true)
+})
+
+test('saved vacancies reveal more results and keep mobile navigation usable',async({page})=>{
+  const rows=Array.from({length:25},(_,i)=>({
+    id:`visual-${i}`,kind:'vacancy',status:'saved',created_at:'2026-09-26T10:00:00Z',updated_at:'2026-09-26T10:00:00Z',
+    data:{title:`Python role ${i+1}`,company:`Company ${i+1}`,description:'Python and PostgreSQL development for a synthetic product team.',
+      direction:'python',level:'junior',region:'Алматы',work_format:'remote',favorite:false}
+  }))
+  await page.route('**/api/v1/records/vacancy',route=>route.fulfill({json:rows}))
+  await page.setViewportSize({width:390,height:844})
+  await register(page,`design-${Date.now()}@example.com`)
+  await page.getByRole('button',{name:'Вакансии',exact:true}).click()
+  await expect(page.getByRole('button',{name:'Настроить поиск'})).toBeVisible()
+  await page.getByRole('button',{name:'Настроить поиск'}).click()
+  await expect(page.getByLabel('Регион',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'Свернуть поиск'}).click()
+  await page.getByLabel('Сортировка вакансий').selectOption('company')
+  await expect(page.locator('.vacancy-card').first().getByText('Company 1',{exact:true})).toBeVisible()
+  await expect(page.locator('.vacancy-card')).toHaveCount(12)
+  await expect(page.getByText('12 из 25',{exact:false})).toBeVisible()
+  await page.getByRole('button',{name:'Показать ещё 12'}).click()
+  await expect(page.locator('.vacancy-card')).toHaveCount(24)
+  await page.getByLabel('Поиск среди сохранённых вакансий').fill('Company 25')
+  await expect(page.locator('.vacancy-card')).toHaveCount(1)
+  await page.getByLabel('Поиск среди сохранённых вакансий').fill('нет совпадений')
+  await expect(page.getByRole('heading',{name:'По этим условиям вакансий нет'})).toBeVisible()
+  await page.getByRole('button',{name:'Сбросить фильтры'}).click()
+  await expect(page.locator('.vacancy-card')).toHaveCount(12)
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true)
+  await page.getByRole('button',{name:'Мой прогресс',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'Прогресс',exact:true})).toBeVisible()
 })
 
 test('CV sections without AI, provider unavailable and local font',async({page})=>{
@@ -115,11 +147,13 @@ test('vacancy search sends selected profile overrides',async({page})=>{
   await page.getByLabel('Фильтр уровня').selectOption('middle')
   await page.getByLabel('Регион',{exact:true}).fill('Алматы')
   await page.getByLabel('Формат работы',{exact:true}).selectOption('hybrid')
+  await page.getByLabel('Опыт для поиска').selectOption('broader')
+  await page.getByLabel('Сколько вакансий загрузить').selectOption('100')
   const pending=page.waitForRequest(r=>r.url().endsWith('/vacancies/hh/sync')&&r.method()==='POST')
   await page.getByRole('button',{name:'Обновить вакансии',exact:true}).click()
   const request=await pending
   expect(request.headers()['idempotency-key']).toBeTruthy()
-  expect(request.postDataJSON()).toMatchObject({regions:['Алматы'],direction:'qa',level:'middle',work_format:'hybrid'})
+  expect(request.postDataJSON()).toMatchObject({regions:['Алматы'],direction:'qa',level:'middle',work_format:'hybrid',max_results:100,experience_scope:'broader'})
   expect(request.postDataJSON()).not.toHaveProperty('area')
 })
 
@@ -158,8 +192,16 @@ test('administrator reviews extracted question before publishing',async({page})=
     buffer:Buffer.from('1\n00:00:01,000 --> 00:00:20,000\nЧто означает rollback? Кандидат: фиксирует изменения. Интервьюер: нет, отменяет изменения.\n','utf8')})
   await expect(page.getByText('Расшифровка · manual.srt',{exact:false})).toBeVisible()
   await page.getByRole('button',{name:'Извлечь вопросы',exact:true}).click()
-  await page.getByRole('button',{name:'Вопросы',exact:true}).click()
+  await page.getByRole('main').getByRole('button',{name:'Вопросы',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'Покрытие базы вопросов'})).toBeVisible()
   const question=page.getByRole('button',{name:/Что означает rollback в транзакции/})
+    await page.getByRole('button',{name:'Показать вопросы QA'}).click()
+    await expect(question).toHaveCount(0)
+    await page.getByRole('button',{name:'Показать вопросы Python backend'}).click()
+    await expect(question).toBeVisible()
+    await page.getByLabel('Направление вопросов').selectOption('qa')
+    await expect(question).toHaveCount(0)
+    await page.getByLabel('Направление вопросов').selectOption('python')
     await expect(question).toBeVisible()
     await question.click()
     const sourceReview=page.getByRole('region',{name:'Сверка с источником'})
@@ -201,4 +243,30 @@ test('lost response retry reuses paid action key',async({page})=>{
   expect(keys[0]).toBe(keys[1])
   const jobs=await (await page.request.get('/api/v1/jobs')).json()
   expect(jobs.filter((j:any)=>j.kind==='hh_sync')).toHaveLength(1)
+})
+
+test('editing a published English question preserves its original link',async({page})=>{
+  await page.goto('/')
+  await page.getByLabel('Email',{exact:true}).fill('owner@example.com')
+  await page.getByLabel('Пароль',{exact:true}).fill('browser-test-pass-42')
+  await page.getByRole('button',{name:'Войти',exact:true}).click()
+  await expect(page.getByRole('heading',{name:'Обзор',exact:true})).toBeVisible()
+  const auth=await (await page.request.get('/api/v1/auth/me')).json()
+  const headers={'X-CSRF-Token':auth.csrf}
+  const questions=await (await page.request.get('/api/v1/admin/question')).json()
+  const original=questions.find((q:{status:string;data:{language:string;translation_of?:string}})=>q.status==='published'&&q.data.language==='ru'&&!q.data.translation_of)
+  const translation=await (await page.request.post('/api/v1/admin/questions',{headers,data:{
+    question:'How does a synthetic transaction commit?',topic:'Transactions',direction:'python',level:'junior',language:'en',
+    reference_answer:'A transaction commits every change together, or rolls them back as a unit.',
+    rubric:['Atomicity','Commit','Rollback'],needs_context:false,material_ids:original.data.material_ids,translation_of:original.id
+  }})).json()
+  expect((await page.request.post('/api/v1/admin/publish/'+translation.id,{headers})).ok()).toBeTruthy()
+  await page.getByRole('button',{name:'База знаний',exact:true}).click()
+  await page.getByRole('main').getByRole('button',{name:'Вопросы',exact:true}).click()
+  await page.getByRole('button',{name:/How does a synthetic transaction commit/}).click()
+  // Save through the actual form payload, then publish its next revision.
+  await page.getByRole('button',{name:'Проверено · опубликовать',exact:true}).click()
+  await expect(page.getByRole('status').filter({hasText:'Вопрос опубликован'})).toBeVisible()
+  const saved=await (await page.request.get('/api/v1/admin/question')).json()
+  expect(saved.find((q:{id:string})=>q.id===translation.id).data.translation_of).toBe(original.id)
 })

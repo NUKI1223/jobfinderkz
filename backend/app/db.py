@@ -106,3 +106,10 @@ class Usage(Base):
     state: Mapped[str] = mapped_column(String(20), default='reserved')
     details: Mapped[dict] = mapped_column(Json, default=lambda: {'method': 'legacy_unknown'})
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class GlobalOperation(Base):
+    __tablename__ = 'global_operations'
+    key: Mapped[str] = mapped_column(String(128), primary_key=True)
+    # Deliberately no cascading FK: deleted initiator must not authorize a retry.
+    job_id: Mapped[str] = mapped_column(String(36))

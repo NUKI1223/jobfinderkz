@@ -1,0 +1,32 @@
+name: jobfinder-regression
+services:
+  db:
+    image: pgvector/pgvector:pg18
+    environment:
+      POSTGRES_DB: jobfinder_test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: isolated-test-only
+    tmpfs: [/var/lib/postgresql]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U test -d jobfinder_test]
+      interval: 1s
+      retries: 30
+  tests:
+    image: jobfinderkz-backend:local
+    environment:
+      DATABASE_URL: postgresql+psycopg://test:isolated-test-only@db/jobfinder_test
+      OPENAI_API_KEY: ''
+      GEMINI_API_KEY: ''
+      HH_ACCESS_TOKEN: ''
+      APP_ORIGIN: http://localhost:5174
+      ALLOW_DESTRUCTIVE_TESTS: "1"
+    volumes:
+      - ./backend:/app:ro
+      - ./docs/knowledge:/reviewed:ro
+    depends_on:
+      db: {condition: service_healthy}
+    command: [sh, -c, 'alembic upgrade head && pytest -q -p no:cacheprovider']
+  e2e:
+    extends: tests
+    ports: [127.0.0.1:8001:8000]
+    command: [sh, -c, 'alembic upgrade head && python -m tests.e2e_server']

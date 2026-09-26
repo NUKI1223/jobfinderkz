@@ -9,7 +9,7 @@ const stateFile = path.join(docs, '.source-state.json')
 const extensions = new Set(['.py','.ts','.tsx','.css','.html','.json','.ini','.yaml','.yml','.mjs','.ps1','.txt','.conf','.sql'])
 const skipped = new Set(['node_modules','dist','__pycache__','.pytest_cache','test-results','playwright-report','.git','.venv','storage'])
 const named = new Set(['Dockerfile','.dockerignore'])
-const files = ['AGENTS.md','README.md','.gitignore','.env.example','compose.yaml']
+const files = ['AGENTS.md','README.md','.gitignore','.env.example','compose.yaml','compose.test.yaml']
 function collect(relative) {
   for(const item of fs.readdirSync(path.join(root,relative), {withFileTypes:true})) {
     if(skipped.has(item.name) || item.name.startsWith('.env')) continue
