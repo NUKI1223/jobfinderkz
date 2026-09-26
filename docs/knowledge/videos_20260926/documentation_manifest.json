@@ -1,0 +1,65 @@
+[
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model",
+    "status": 200,
+    "sha256": "087388cfe34afd62c6028a0f4aecd9119b7fbc1bdfaf9b62787f50b439180f43",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascade/Introduction",
+    "status": 200,
+    "sha256": "1f943fb7f34ed3d86f2380e857d9a81c5029ccfa3c6ee660941c5c214e8cf4ac",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/howto/logging.html",
+    "resolved_url": "https://docs.python.org/3/howto/logging.html",
+    "status": 200,
+    "sha256": "f682c55a7cfebf6bf28091e3737b9f5e0dcfe519a3ef6a1c9849e17437a98eb2",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/tutorial/classes.html#generators",
+    "resolved_url": "https://docs.python.org/3/tutorial/classes.html#generators",
+    "status": 200,
+    "sha256": "fcdd3a1b86e10b7b079d7f89f4c497355269d46e3b035915069bcf5a88789143",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions",
+    "resolved_url": "https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions",
+    "status": 200,
+    "sha256": "70335b057557f6d7df53f47bead9e0f18e012ff1c6d0dd8a08c76edd1a7d2128",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/current/queries-limit.html",
+    "resolved_url": "https://www.postgresql.org/docs/current/queries-limit.html",
+    "status": 200,
+    "sha256": "b35786cb1ed379c277358879f6283fb4288c77951eba62da9f094cbad429857c",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/current/queries-select-lists.html",
+    "resolved_url": "https://www.postgresql.org/docs/current/queries-select-lists.html",
+    "status": 200,
+    "sha256": "3269a0b5d5733a2bb3c9eb6d6b3fceabb78bd4b95f8dd62a94339acf49bc145b",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+    "resolved_url": "https://www.rfc-editor.org/rfc/rfc7519.html",
+    "status": 200,
+    "sha256": "d0ca0d6c6f8b7dfcad6e13c55086694d7ee69665bb828dcac6362d1587b4b53b",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "resolved_url": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "status": 200,
+    "sha256": "65059236b65ca260767bf2b02138336f57a894ee52c2819194f8761baa167f89",
+    "checked_at": "2026-09-26"
+  }
+]

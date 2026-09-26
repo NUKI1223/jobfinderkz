@@ -1,0 +1,72 @@
+{
+  "checked_at": "2026-09-26",
+  "method": "Public GitHub pages and GitHub API license/readme contents; no tokens used",
+  "sources": [
+    {
+      "repo": "h5bp/Front-end-Developer-Interview-Questions",
+      "branch": "main",
+      "license": "MIT",
+      "license_url": "https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/main/LICENSE.md",
+      "license_sha": "07211954e2517df35f69cfbc6da3eaefa066b18f"
+    },
+    {
+      "repo": "yangshun/front-end-interview-handbook",
+      "branch": "main",
+      "license": "MIT",
+      "license_url": "https://github.com/yangshun/front-end-interview-handbook/blob/main/LICENSE",
+      "license_sha": "9dcf324dcbc005751a2da60352ac59175ff111e7"
+    },
+    {
+      "repo": "lydiahallie/javascript-questions",
+      "branch": "master",
+      "license": "MIT",
+      "license_url": "https://github.com/lydiahallie/javascript-questions/blob/master/LICENSE",
+      "license_sha": "d63d90e5002cc2f9f802a22de14aceb62d1fd4e1",
+      "reviewed_import": {
+        "date": "2026-09-26",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "questions_ru": 8,
+        "tasks_ru": 8,
+        "package": "open_20260926",
+        "scope": "Selected reviewed adaptations, not full repository"
+      }
+    },
+    {
+      "repo": "vamsitallapudi/Python-Interview-Questions-And-Answers",
+      "branch": "master",
+      "license": "Apache-2.0",
+      "license_url": "https://github.com/vamsitallapudi/Python-Interview-Questions-And-Answers/blob/master/LICENSE",
+      "license_sha": "f49a4e16e68b128803cc2dcea614603632b04eac"
+    },
+    {
+      "repo": "devAmoghS/Python-Interview-Problems-for-Practice",
+      "branch": "master",
+      "license": "MIT",
+      "license_url": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/master/LICENSE",
+      "license_sha": "c922cae71323224edf1a771fcb73c661144a711e",
+      "reviewed_import": {
+        "date": "2026-09-26",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "questions_ru": 8,
+        "tasks_ru": 8,
+        "package": "open_20260926",
+        "scope": "Selected reviewed adaptations, not full repository"
+      }
+    },
+    {
+      "repo": "Saurabhsds13/sdet-engineering-playbook",
+      "branch": "master",
+      "license": "MIT",
+      "license_url": "https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/master/LICENSE",
+      "data_url": "https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/master/data/interview-questions.json",
+      "reviewed_import": {
+        "date": "2026-09-26",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "questions_ru": 8,
+        "tasks_ru": 8,
+        "package": "open_20260926",
+        "scope": "Selected reviewed adaptations, not full repository"
+      }
+    }
+  ]
+}

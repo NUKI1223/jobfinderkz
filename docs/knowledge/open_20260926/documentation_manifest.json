@@ -1,0 +1,186 @@
+[
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "status": 200,
+    "bytes": 244586,
+    "sha256": "2991dd9c7460c19198a6945d73eb001df6b889acc39ec909b5dbcc9bd66e42e5",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+    "status": 200,
+    "bytes": 190698,
+    "sha256": "ccb11c64261ceda370c1d53a725901dcf5aa80b0468debefcd3d5da6aeb2db36",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "status": 200,
+    "bytes": 181370,
+    "sha256": "5d49fb5771d41b74277d22e6d58d2a6361b68d72644705b966fa40c9c763d3e7",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_NOT",
+    "status": 200,
+    "bytes": 201212,
+    "sha256": "d0f57bc0d409191eeac796d36d1c0554deb57466e9ade77f248f8f374bcfb8d1",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer",
+    "status": 200,
+    "bytes": 213811,
+    "sha256": "1e9b84b6e38a7af2a5c93f53665d16ad682cf8754dbd1449027b9bf9d8af9e1b",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus",
+    "status": 200,
+    "bytes": 200231,
+    "sha256": "be752db3b12d7472b752455d7aaf96c93b79d8fe970c01f046248e856928c15d",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return",
+    "status": 200,
+    "bytes": 202060,
+    "sha256": "125a6c9a6733a83844bb6a5612630e7bdbdfa1070885ff100ae3292d971928f6",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw",
+    "status": 200,
+    "bytes": 203523,
+    "sha256": "db40637ecf584a63f397eeeda3a04a0b9986e7238ee04b82c6ed08fe1fe90552",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/bisect.html",
+    "resolved_url": "https://docs.python.org/3/library/bisect.html",
+    "status": 200,
+    "bytes": 49902,
+    "sha256": "1a5906267efe2123a05afc5bada80ba350aa515c5a4b244cf8174a67b7eb8ea5",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/collections.html#collections.Counter",
+    "resolved_url": "https://docs.python.org/3/library/collections.html#collections.Counter",
+    "status": 200,
+    "bytes": 208480,
+    "sha256": "f9776ce7f58bd5c8c96d0281880adb7b7b9c86e7df5f4f66c39ac3d7d95a203a",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/functions.html#max",
+    "resolved_url": "https://docs.python.org/3/builtins/functions.html",
+    "status": 200,
+    "bytes": 318871,
+    "sha256": "be2c2ec4a7e4ebd7a07161e3679c491bbebfdd7e9e2a171e7b544a38359681f9",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
+    "resolved_url": "https://docs.python.org/3/builtins/stdtypes.html",
+    "status": 200,
+    "bytes": 773977,
+    "sha256": "9e0aa6fcb8b1d3a707c4fc3450bf416989696f42901e9bb906f8b1c46b9a7f46",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range",
+    "resolved_url": "https://docs.python.org/3/builtins/stdtypes.html",
+    "status": 200,
+    "bytes": 773977,
+    "sha256": "9e0aa6fcb8b1d3a707c4fc3450bf416989696f42901e9bb906f8b1c46b9a7f46",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+    "resolved_url": "https://docs.python.org/3/builtins/stdtypes.html",
+    "status": 200,
+    "bytes": 773977,
+    "sha256": "9e0aa6fcb8b1d3a707c4fc3450bf416989696f42901e9bb906f8b1c46b9a7f46",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://playwright.dev/docs/actionability",
+    "resolved_url": "https://playwright.dev/docs/actionability",
+    "status": 200,
+    "bytes": 47845,
+    "sha256": "656b10fbbecfbdb32c11fa5d9a848c5dfad0c2eff71dfb65c95ce853c1ecf4a0",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://playwright.dev/docs/test-configuration",
+    "resolved_url": "https://playwright.dev/docs/test-configuration",
+    "status": 200,
+    "bytes": 70589,
+    "sha256": "5272635388c6062b2faf6c844c438f68105de35397fda45922bfa29606c7bfbc",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/current/functions-aggregate.html",
+    "resolved_url": "https://www.postgresql.org/docs/current/functions-aggregate.html",
+    "status": 200,
+    "bytes": 75713,
+    "sha256": "aedede3fcde68c7c3b82d090d081a915952e221e5d93cc6c0424e11004b9e074",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/current/functions-subquery.html",
+    "resolved_url": "https://www.postgresql.org/docs/current/functions-subquery.html",
+    "status": 200,
+    "bytes": 31590,
+    "sha256": "7caedecc1897752518ab0e4a184d47c911a638e1d1d6a0a734922f3f08efbd44",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+    "resolved_url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+    "status": 200,
+    "bytes": 20698,
+    "sha256": "f6bf7f625907acc2b7c14b222db9c4b7110e5bca69c9d62a46c6e2f618924a44",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/",
+    "resolved_url": "https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/",
+    "status": 200,
+    "bytes": 190622,
+    "sha256": "e27967f766a8511ec6bbf1327efe10447552aa62a904bdc85856cf70b8b74e3f",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.selenium.dev/documentation/webdriver/interactions/windows/",
+    "resolved_url": "https://www.selenium.dev/documentation/webdriver/interactions/windows/",
+    "status": 200,
+    "bytes": 989445,
+    "sha256": "cfd123b37575b5616d41b54b3c8896b0b39c660bd60a51fdb60c9d8de6f235e1",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/",
+    "resolved_url": "https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/",
+    "status": 200,
+    "bytes": 88319,
+    "sha256": "0de491ec120ef71726d93a2f121792e6e79f418236edcb582f18d7661e002422",
+    "checked_at": "2026-09-26"
+  },
+  {
+    "url": "https://www.selenium.dev/documentation/webdriver/waits/",
+    "resolved_url": "https://www.selenium.dev/documentation/webdriver/waits/",
+    "status": 200,
+    "bytes": 485324,
+    "sha256": "bbb0203899337cc3672774e029b3d96d64b139647626d5c13dd8798545f64f2a",
+    "checked_at": "2026-09-26"
+  }
+]

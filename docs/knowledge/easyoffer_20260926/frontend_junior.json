@@ -1,0 +1,87 @@
+{
+  "batch": "reviewed-easyoffer-topics-20260926-frontend-junior",
+  "source_kind": "documentation",
+  "direction": "frontend",
+  "level": "junior",
+  "language": "ru",
+  "review_method": "Темы отобраны из открытого каталога EasyOffer; собственные формулировки и эталоны сверены с официальной документацией 2026-09-26. Ответы пользователей EasyOffer не использованы как эталоны.",
+  "materials": [
+    {
+      "key": "type-interface",
+      "url": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+      "title": "TypeScript: модели данных",
+      "text": "Interface задаёт контракт объекта и допускает слияние объявлений. Type позволяет дать имя объединению вариантов. Ни одна конструкция сама не валидирует сетевые данные.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/v-chem-raznica-mezhdu-tipom-i-interfejsom-v-typesc. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео."
+    },
+    {
+      "key": "this",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this",
+      "title": "JavaScript: контекст вызова",
+      "text": "This у обычной функции зависит от вызова. Bind создаёт функцию с закреплённым получателем; стрелка использует лексический this.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/chto-takoe-this. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео."
+    },
+    {
+      "key": "render-commit",
+      "url": "https://react.dev/learn/render-and-commit",
+      "title": "React: render и commit",
+      "text": "Render вычисляет результат компонентов. Commit приводит DOM к этому результату необходимыми операциями. Рендер компонента сам по себе не доказывает изменение каждого узла.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/chto-takoe-virtual-dom. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео."
+    }
+  ],
+  "questions": [
+    {
+      "key": "type-interface",
+      "question": "Когда для модели данных подходит interface, а когда нужен type в TypeScript?",
+      "topic": "TypeScript: модели данных",
+      "reference_answer": "Оба описывают форму объекта. Interface поддерживает объединение повторных объявлений и расширение через extends. Type может именовать также union, примитив и другие выражения типов; повторно открыть такой псевдоним нельзя. Это описание для проверки типов, а не проверка входящего JSON во время выполнения.",
+      "rubric": [
+        "Сопоставляет способы описания объекта.",
+        "Указывает declaration merging у interface.",
+        "Приводит union как применение type."
+      ],
+      "material_keys": [
+        "type-interface"
+      ],
+      "roles": "Учебная карточка по документации; реплики участников интервью отсутствуют.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/v-chem-raznica-mezhdu-tipom-i-interfejsom-v-typesc. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео.",
+      "task": "Опишите модель Person с полем name: string через interface и состояние LoadState, принимающее только idle или loading, через type.",
+      "task_solution": "interface Person { name: string }\ntype LoadState = \"idle\" | \"loading\";"
+    },
+    {
+      "key": "this",
+      "question": "Почему метод теряет this при передаче как callback и как сохранить нужный объект?",
+      "topic": "JavaScript: контекст вызова",
+      "reference_answer": "Для обычной функции this определяется способом вызова. Вызов obj.method() передаёт obj, но отдельно сохранённая функция не помнит этот получатель. В строгом режиме обычный вызов без получателя даёт undefined. Можно создать привязанную функцию через bind либо обёртку, вызывающую метод у объекта. Стрелочная функция берёт this из внешней области, а не из объекта, в который её записали.",
+      "rubric": [
+        "Различает метод и отдельный вызов.",
+        "Учитывает строгий режим.",
+        "Предлагает bind или корректную обёртку."
+      ],
+      "material_keys": [
+        "this"
+      ],
+      "roles": "Учебная карточка по документации; реплики участников интервью отсутствуют.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/chto-takoe-this. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео.",
+      "task": "В строгом режиме дан объект const meter = { value: 7, read() { return this.value; } }; создайте callback readLater, который можно вызвать отдельно и получить 7.",
+      "task_solution": "const readLater = meter.read.bind(meter);\n// Альтернатива: const readLater = () => meter.read();"
+    },
+    {
+      "key": "render-commit",
+      "question": "Чем повторный render в React отличается от изменения реального DOM?",
+      "topic": "React: render и commit",
+      "reference_answer": "Во время render React вызывает компоненты и вычисляет следующий результат интерфейса. На стадии commit применяет необходимые изменения к DOM. Повторный вызов компонента не означает замену всех его DOM-узлов: если результат не изменился, соответствующее обновление DOM не требуется. Virtual DOM — удобное название представления интерфейса в памяти, а не гарантия, что любой React-код быстрее прямой работы с DOM.",
+      "rubric": [
+        "Разделяет вычисление результата и изменение DOM.",
+        "Не приравнивает рендер к полной перерисовке DOM.",
+        "Не обещает автоматического ускорения."
+      ],
+      "material_keys": [
+        "render-commit"
+      ],
+      "roles": "Учебная карточка по документации; реплики участников интервью отсутствуют.",
+      "review_note": "Источник темы: https://easyoffer.ru/frontend-developer/question/chto-takoe-virtual-dom. Техническая проверка по указанному первоисточнику; формулировка и упражнение редакторские, не извлечены из видео.",
+      "task": "",
+      "task_solution": ""
+    }
+  ]
+}

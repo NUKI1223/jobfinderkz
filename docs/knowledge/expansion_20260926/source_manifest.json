@@ -1,0 +1,634 @@
+[
+  {
+    "url": "https://bugzilla.mozilla.org/page.cgi?id=bug-writing.html",
+    "resolved_url": "https://bugzilla.mozilla.org/page.cgi?id=bug-writing.html",
+    "title": "Bug Writing Guidelines",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d9e4b9234aa92566008fb5b3af2eb07e1e26f442b07c0f63a090ccfbedce4264"
+  },
+  {
+    "url": "https://coverage.readthedocs.io/en/latest/branch.html",
+    "resolved_url": "https://coverage.readthedocs.io/en/latest/branch.html",
+    "title": "Branch coverage measurement — Coverage.py 7.16.1 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "1ff760b49d0b1e770d871c86806b844d280e3e507093eb25b02f87e2dcb3dbe3"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Glossary/Debounce",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Glossary/Debounce",
+    "title": "Debounce - Glossary | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "de74149247cd93b732e23641e6f0177c7b1239b255581bc20a7bcf2bfc827137"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Event_bubbling",
+    "title": "Event bubbling - Learn web development | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "ca8431e1e8117f62a1a8cd80a3d8f389b33f736bde7a547b232654d0c81ef7ec"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation",
+    "title": "Client-side form validation - Learn web development | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "080417c2f08a9ff1eaa4ac3641bf41d9fb9670da4676e9f68c0dc4124ac61782"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/API/AbortController",
+    "title": "AbortController - Web APIs | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d6b3098b8f23849429fc43db9d3455a8b35789e7f809cb97dc74d4f88d7278a5"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch",
+    "title": "Using the Fetch API - Web APIs | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "48b74112eda880cf65706bd2be04a2b68205f4e8a66d5e505aa4eba5c7ec23eb"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API/Microtask_guide",
+    "title": "Using microtasks in JavaScript with queueMicrotask() - Web APIs | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "fba0f1e712f826da05221c8ca51e58a43eaa8abdb7af36d15f646f34f1052de1"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers",
+    "title": "Using Web Workers - Web APIs | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "809c9cd77a046757af7465be46da0b0264a50aebc0ef55b2bf0734428f6cd98d"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Basic_concepts_of_flexbox",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Flexible_box_layout/Basic_concepts",
+    "title": "Basic concepts of flexbox - CSS | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "6cb67f06c1925c97cdafa780b74cb1464a842fa3f0e7b6a0649b3e7c42f16053"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/Introduction",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Box_model/Introduction",
+    "title": "Introduction to the CSS box model - CSS | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "1be894791b15f1d7e70130382f50d71f5f893c44d550571301fdbb9dd0cd6689"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/box-sizing",
+    "title": "box-sizing CSS property - CSS | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "e0288742a1a847a5c14e725e9fd93d665cd7e971a76d2f3e4f10fab25204307c"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/button",
+    "title": "<button> HTML button element - HTML | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "94221e0cc515d212db6b13b4dd1364c0660d2fdee7134d3e671c426bbd6919b2"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/label",
+    "title": "<label> HTML label element - HTML | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d596be6e3f6e8e0949f13ea9e6077a2531d804ebe09b5c6bc63353007b313b5b"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS",
+    "title": "Cross-Origin Resource Sharing (CORS) - HTTP | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "530271d1dc12f3779dba04b6f1c98ff7a33e262f3fe44a7083bbdb92a7f6c86c"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Cache-Control",
+    "title": "Cache-Control header - HTTP | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "f908e5c8eab6088251d9c6d22247775213428de02449ab0a4b0a3a385fbe5f06"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/ETag",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/ETag",
+    "title": "ETag header - HTTP | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "56295a8479c5aac14af404f1e2200d2333b429e8c946e899717ef9db1e0052a2"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+    "title": "Closures - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "a2064d705b17472513a1f8491d46812444545d25e4cd84a0d3d98f4c1b799383"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map",
+    "title": "Array.prototype.map() - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d9c516e9203ee83dfb4f12580d9d2c8890541b6118aa668bf286484d49b10289"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all",
+    "title": "Promise.all() - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "3161809c808fadb18a6188911ec9916269983ec7e6cef8b4a537acfedf540dea"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality",
+    "title": "Strict equality (===) - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "00fa338b017c6ed222879e2c166b718c608f22619e6eb76360b41c09ecee2af0"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const",
+    "title": "const - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "f40f5b2368031a91eee2aeaf50a0a482ea28735f749eafba9d750435e3c4ca18"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let",
+    "title": "let - JavaScript | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d137be26c64794f3ec1f8064076d47cfda30f7c891a4cf2d5677533a6047a66b"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/CSRF",
+    "title": "Cross-site request forgery (CSRF) - Security | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "b24cdc4f4c6462deca85c1e189711190e50579ebfa0933815ce79e26ef6c7310"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS",
+    "resolved_url": "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS",
+    "title": "Cross-site scripting (XSS) - Security | MDN",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "1a3f57d717093771b3207b83c58660f426bae53f6a27311dee86b0c3d606c822"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/explanation/flaky.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/explanation/flaky.html",
+    "title": "Flaky tests - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "8eafa80b0e8c2a35902d995a44b5a0233eed33e56a5cf2e1bc8807d13272dfe1"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/assert.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/assert.html",
+    "title": "How to write and report assertions in tests - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "e9ad8e3047daac00c2635fa9d856cd3dbec8bf99fa352c6e7bad104bbf357cf8"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/capture-stdout-stderr.html",
+    "title": "How to capture stdout/stderr output - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "a8f5a4ff12b0585b6d25e49add574c57dcd42d1fac889193c053b2a04cafafa8"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/fixtures.html",
+    "title": "How to use fixtures - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "f400dcc7b428fa7f1a020d5db68e310f761d2838aa6ef8354110d1b68be9aaab"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/monkeypatch.html",
+    "title": "How to monkeypatch/mock modules and environments - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "3a082c8b3a30ea6eb853825d892215e68812de898f358fa60f0034dc75630387"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/parametrize.html",
+    "title": "How to parametrize fixtures and test functions - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "b4b59831729b62156b79359dd20ad1cbc12511d31ebb3fc3723922651cfc4288"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/skipping.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/skipping.html",
+    "title": "How to use skip and xfail to deal with tests that cannot succeed - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "5cd6d2d08fd1ffce6774ebbc33b3b7c2afeecd323ceb47327e54e49be81e6f7f"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/how-to/tmp_path.html",
+    "resolved_url": "https://docs.pytest.org/en/stable/how-to/tmp_path.html",
+    "title": "How to use temporary directories and files in tests - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "75d311404c4aa2e234481a63639577d232b9e9c060dd947cef5f3f7a9587f588"
+  },
+  {
+    "url": "https://docs.pytest.org/en/stable/reference/reference.html#pytest-raises",
+    "resolved_url": "https://docs.pytest.org/en/stable/reference/reference.html#pytest-raises",
+    "title": "API Reference - pytest documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "f5bec386c659f63492d2c64c8cb405571418b02cee8d40cc4684e01ba76ca456"
+  },
+  {
+    "url": "https://docs.python.org/3/howto/descriptor.html",
+    "resolved_url": "https://docs.python.org/3/howto/descriptor.html",
+    "title": "Descriptor Guide — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "2f1263b3081120db2eeb98255ee1935ab1ebf30cf53ec57e994e855c4ddd2a37"
+  },
+  {
+    "url": "https://docs.python.org/3/library/asyncio-sync.html#semaphore",
+    "resolved_url": "https://docs.python.org/3/library/asyncio-sync.html#semaphore",
+    "title": "Synchronization Primitives — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "4ac16e15f9daf88d60062f959acaa1ade0c564953279d50dc1fd6bac13ef0a80"
+  },
+  {
+    "url": "https://docs.python.org/3/library/asyncio-task.html#task-cancellation",
+    "resolved_url": "https://docs.python.org/3/library/asyncio-task.html#task-cancellation",
+    "title": "Coroutines and tasks — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "a39adc24a765749841f9ac07aa1855c63b9a4914b13f30c1a86ea12d47b2255d"
+  },
+  {
+    "url": "https://docs.python.org/3/library/asyncio-task.html#task-groups",
+    "resolved_url": "https://docs.python.org/3/library/asyncio-task.html#task-groups",
+    "title": "Coroutines and tasks — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "a39adc24a765749841f9ac07aa1855c63b9a4914b13f30c1a86ea12d47b2255d"
+  },
+  {
+    "url": "https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor",
+    "resolved_url": "https://docs.python.org/3/library/concurrent.futures.html#processpoolexecutor",
+    "title": "concurrent.futures — Launching parallel tasks — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "441faa22ff6a4b394d67f110567c8e02ea59e4a2164ba612b4398c192803256b"
+  },
+  {
+    "url": "https://docs.python.org/3/library/contextvars.html",
+    "resolved_url": "https://docs.python.org/3/library/contextvars.html",
+    "title": "contextvars — Context Variables — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "880f898c642ef338139729d7023bfeeaf6eaa920fed3902b1b8ca8769adf4452"
+  },
+  {
+    "url": "https://docs.python.org/3/library/functions.html#zip",
+    "resolved_url": "https://docs.python.org/3/builtins/functions.html#zip",
+    "title": "Built-in Functions — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d9ae8955fb37f74ff7b6169bdf326e0b7bf8a9f5e14e8ee9d3ba98cc9dbb6f73"
+  },
+  {
+    "url": "https://docs.python.org/3/library/functools.html#functools.lru_cache",
+    "resolved_url": "https://docs.python.org/3/library/functools.html#functools.lru_cache",
+    "title": "functools — Higher-order functions and operations on callable objects — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "5a21bb4cd216c6c0dfd527f879601e81f555851212b3c358521588ae2e7a359e"
+  },
+  {
+    "url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
+    "resolved_url": "https://docs.python.org/3/library/itertools.html#itertools.cycle",
+    "title": "itertools — Functions creating iterators for efficient looping — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "700be52b408916b86e1f00c5bb0fd465dc85b1aafdc1ac2f19abfb4a4a7f4335"
+  },
+  {
+    "url": "https://docs.python.org/3/library/sqlite3.html#how-to-use-placeholders-to-bind-values-in-sql-queries",
+    "resolved_url": "https://docs.python.org/3/library/sqlite3.html#how-to-use-placeholders-to-bind-values-in-sql-queries",
+    "title": "sqlite3 — DB-API 2.0 interface for SQLite databases — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "8828c99694ca12f8852ef08cdce848ef7cf31789ae3cff519d3d3fc712c36d92"
+  },
+  {
+    "url": "https://docs.python.org/3/library/threading.html#gil-and-performance-considerations",
+    "resolved_url": "https://docs.python.org/3/library/threading.html#gil-and-performance-considerations",
+    "title": "threading — Thread-based parallelism — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "3c5c85ff46f04b8a734c31005407bd008091bc733f063447fb989e3b9efd30d4"
+  },
+  {
+    "url": "https://docs.python.org/3/library/typing.html",
+    "resolved_url": "https://docs.python.org/3/library/typing.html",
+    "title": "typing — Support for type hints — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "54b03d5eb7c9c56de7e19109bc3e58f8b40dd2bcf3850895173dbc7f46872dfa"
+  },
+  {
+    "url": "https://docs.python.org/3/library/unittest.mock.html#where-to-patch",
+    "resolved_url": "https://docs.python.org/3/library/unittest.mock.html#where-to-patch",
+    "title": "unittest.mock — mock object library — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "cdfe4e164e6856a19600f4bd38808591cf699cf15dfb790dd169b73d00d1bdc2"
+  },
+  {
+    "url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
+    "resolved_url": "https://docs.python.org/3/tutorial/classes.html#multiple-inheritance",
+    "title": "9. Classes — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "7b599567b7a99adfd692e6d0996aa8aa7cdd200220579383a15fe8368a98b435"
+  },
+  {
+    "url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+    "resolved_url": "https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions",
+    "title": "5. Data Structures — Python 3.14.7 documentation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "69a7a6870478e0a6dcb4970147bf2858d80a37ba95a13549ea2b6b17b7c587d8"
+  },
+  {
+    "url": "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html#lazy-loading",
+    "resolved_url": "https://docs.sqlalchemy.org/en/20/orm/queryguide/relationships.html#lazy-loading",
+    "title": "\n        \n        \n    \n    Relationship Loading Techniques\n —\n    SQLAlchemy 2.0 Documentation\n\n        \n    ",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "b0530bc0655b04f3f7c9a270dc1076845a0fb659b909892041345f4d70167f10"
+  },
+  {
+    "url": "https://docs.sqlalchemy.org/en/20/orm/session_basics.html#is-the-session-thread-safe-is-asyncsession-safe-to-share-in-concurrent-tasks",
+    "resolved_url": "https://docs.sqlalchemy.org/en/20/orm/session_basics.html#is-the-session-thread-safe-is-asyncsession-safe-to-share-in-concurrent-tasks",
+    "title": "\n        \n        \n    \n    Session Basics\n —\n    SQLAlchemy 2.0 Documentation\n\n        \n    ",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "010fe73a5b9e002210918d7b9a797bd99ab2d83682410a867a5153806fa94b0f"
+  },
+  {
+    "url": "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf",
+    "resolved_url": "https://istqb.org/wp-content/uploads/2024/11/ISTQB_CTFL_Syllabus_v4.0.1.pdf",
+    "title": "PDF",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "7d28807e59ecf344801e2270379bf355d3528a63384f40a11b7254308b254d13"
+  },
+  {
+    "url": "https://playwright.dev/docs/accessibility-testing",
+    "resolved_url": "https://playwright.dev/docs/accessibility-testing",
+    "title": "Accessibility testing | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "25bbb87302a0875efe7130f7bb9fc5fdf7fe0ac52bfa18b158d7f831d1a88b2b"
+  },
+  {
+    "url": "https://playwright.dev/docs/api-testing",
+    "resolved_url": "https://playwright.dev/docs/api-testing",
+    "title": "API testing | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "a9d4a40df8cd233d4bba54d3be6a2d125d44ee088d82ffa6347a6f9ba87ea401"
+  },
+  {
+    "url": "https://playwright.dev/docs/auth",
+    "resolved_url": "https://playwright.dev/docs/auth",
+    "title": "Authentication | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "490e123d253cbed1a7e32f0617f6c953aafb03a8a6dcbe87d7bd098923e4bdea"
+  },
+  {
+    "url": "https://playwright.dev/docs/browser-contexts",
+    "resolved_url": "https://playwright.dev/docs/browser-contexts",
+    "title": "Isolation | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "b296c87453ea5712b7265488d3f7fe27e7ecceaf32458c78b7e8805ec61e40b2"
+  },
+  {
+    "url": "https://playwright.dev/docs/dialogs",
+    "resolved_url": "https://playwright.dev/docs/dialogs",
+    "title": "Dialogs | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "7cd3fee2a6a976a49dc821cadaefd2fdea6f2e0bde32e4d2f9d0dbc426d8c498"
+  },
+  {
+    "url": "https://playwright.dev/docs/downloads",
+    "resolved_url": "https://playwright.dev/docs/downloads",
+    "title": "Downloads | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "c3cb0982e859821352bba365ec8d5d3c13707fbfee7046e485c97d358faef322"
+  },
+  {
+    "url": "https://playwright.dev/docs/emulation",
+    "resolved_url": "https://playwright.dev/docs/emulation",
+    "title": "Emulation | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "365411487eeaa88f6ba6b037646732044de78d7e8832680872d9aecc89f6e07e"
+  },
+  {
+    "url": "https://playwright.dev/docs/locators",
+    "resolved_url": "https://playwright.dev/docs/locators",
+    "title": "Locators | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "e516ed240a4c367189193f1e331ee37b325c29d94af4cc93ca7a688119198c94"
+  },
+  {
+    "url": "https://playwright.dev/docs/mock",
+    "resolved_url": "https://playwright.dev/docs/mock",
+    "title": "Mock APIs | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "de0fe4530377f102262324c13c237d67e436eaa7816d55578c84fb1e8063572b"
+  },
+  {
+    "url": "https://playwright.dev/docs/test-assertions",
+    "resolved_url": "https://playwright.dev/docs/test-assertions",
+    "title": "Assertions | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "5dddf13cedc1c3d4cfb0542e8f61c4c857b9b22982bf73ee40053668fb69b83e"
+  },
+  {
+    "url": "https://playwright.dev/docs/test-parallel",
+    "resolved_url": "https://playwright.dev/docs/test-parallel",
+    "title": "Parallelism | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "01c32e771bbaa50d4c2d993229e1510a434c3d4e7bed0619998f66b47a0edb1d"
+  },
+  {
+    "url": "https://playwright.dev/docs/test-retries",
+    "resolved_url": "https://playwright.dev/docs/test-retries",
+    "title": "Retries | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "3eef7ad01778f99a60685fb2cd53df9db6947aace285a591599d3eec197113a2"
+  },
+  {
+    "url": "https://playwright.dev/docs/test-snapshots",
+    "resolved_url": "https://playwright.dev/docs/test-snapshots",
+    "title": "Visual comparisons | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "d9135d7de6d2961e43b2b426fe0bc5d475b0d5c5344b87b16dbbf0ebf54dd5d4"
+  },
+  {
+    "url": "https://playwright.dev/docs/trace-viewer",
+    "resolved_url": "https://playwright.dev/docs/trace-viewer",
+    "title": "Trace viewer | Playwright",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "86b8153657ac9b87598f2931ee475a8aa53ae11fd0b8b79df112c6de980ff641"
+  },
+  {
+    "url": "https://react.dev/learn/passing-props-to-a-component",
+    "resolved_url": "https://react.dev/learn/passing-props-to-a-component",
+    "title": "Passing Props to a Component – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "6f4a39fa3ae3cb69d76fa7e3884408ee492be3346395ea1d2b3a0fa4034dacb5"
+  },
+  {
+    "url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+    "resolved_url": "https://react.dev/learn/queueing-a-series-of-state-updates",
+    "title": "Queueing a Series of State Updates – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "f1c29a3891a1f86afee131155b28ae5529b85d5a398acd7dadc98a305fe909d1"
+  },
+  {
+    "url": "https://react.dev/learn/removing-effect-dependencies",
+    "resolved_url": "https://react.dev/learn/removing-effect-dependencies",
+    "title": "Removing Effect Dependencies – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "72d41903a8debbb8672734c7acc9af68bc05af2cfd8aba6493dee603bba231b5"
+  },
+  {
+    "url": "https://react.dev/learn/rendering-lists",
+    "resolved_url": "https://react.dev/learn/rendering-lists",
+    "title": "Rendering Lists – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "2396e89d10b341aff0b54eacfdefed2bd071b04d4b7232cdede4c6197da00c0e"
+  },
+  {
+    "url": "https://react.dev/learn/updating-objects-in-state",
+    "resolved_url": "https://react.dev/learn/updating-objects-in-state",
+    "title": "Updating Objects in State – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "4efab588a25f3218e9d475f24559b1739fd90cf5936168570391fd1d49faf54c"
+  },
+  {
+    "url": "https://react.dev/reference/react-dom/components/input",
+    "resolved_url": "https://react.dev/reference/react-dom/components/input",
+    "title": "<input> – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "2324be7f5af6e85c51bcf4acd5a8d62fcc4584ba8a8a0e53ca6e2ca2605d4814"
+  },
+  {
+    "url": "https://react.dev/reference/react/useEffect",
+    "resolved_url": "https://react.dev/reference/react/useEffect",
+    "title": "useEffect – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "cf56510c2ad0ca420f5d2df09bf94e1d99189944be5bf73e5cb019028ab5f408"
+  },
+  {
+    "url": "https://react.dev/reference/react/useMemo",
+    "resolved_url": "https://react.dev/reference/react/useMemo",
+    "title": "useMemo – React",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "5de7389347122d37847a4164422bebefafc22f6652daf10cd893150891a5aff4"
+  },
+  {
+    "url": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/02-Testing_for_Bypassing_Authorization_Schema/",
+    "resolved_url": "https://wstg.owasp.org/v4.2/4-Web_Application_Security_Testing/05-Authorization_Testing/02-Testing_for_Bypassing_Authorization_Schema/",
+    "title": "WSTG - v4.2 | OWASP Web Security Testing Guide",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "163a0951137898446d15f6783c44105d0d08e348cc31983fa311b842618f8aab"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS",
+    "resolved_url": "https://www.postgresql.org/docs/18/ddl-constraints.html#DDL-CONSTRAINTS-UNIQUE-CONSTRAINTS",
+    "title": "PostgreSQL: Documentation: 18: 5.5. Constraints",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "54caf2877448c25cce907c041c2b7bb974657b4413b401b1deb238edee6e5007"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/18/indexes-multicolumn.html",
+    "resolved_url": "https://www.postgresql.org/docs/18/indexes-multicolumn.html",
+    "title": "PostgreSQL: Documentation: 18: 11.3. Multicolumn Indexes",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "85f64438e4f170d475cc23a9d7c46dc6f6850ad375e45c4de672d964ac6e1153"
+  },
+  {
+    "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+    "resolved_url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+    "title": "PostgreSQL: Documentation: 18: 13.2. Transaction Isolation",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "94e3f538a7b16759966a2943ee099865519ff3e9b0c020764f4fc871e8015545"
+  },
+  {
+    "url": "https://www.rfc-editor.org/rfc/rfc6749#section-1.5",
+    "resolved_url": "https://www.rfc-editor.org/info/rfc6749/#section-1.5",
+    "title": "RFC 6749: The OAuth 2.0 Authorization Framework | RFC Editor",
+    "checked_at": "2026-09-26",
+    "http_status": 200,
+    "extracted_text_sha256": "9ced17cc1692868e0cbb0459332a832571a1778f11c5b16d2e42786442651df4"
+  }
+]

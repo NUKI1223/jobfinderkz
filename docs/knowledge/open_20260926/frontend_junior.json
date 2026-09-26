@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-frontend-junior",
+  "source_kind": "documentation",
+  "direction": "frontend",
+  "level": "junior",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "unary",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unary_plus",
+      "title": "JavaScript: преобразование значений — источник и разбор",
+      "text": "Унарный плюс выполняет числовое преобразование: +true даёт 1. Оператор ! сначала проверяет истинность значения, затем инвертирует результат. Непустая строка истинна, поэтому !\"Lydia\" равно false; пустая строка ложна. Типы результатов — number и boolean.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 4. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 4. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    },
+    {
+      "key": "number-wrapper",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+      "title": "JavaScript: объект Number — источник и разбор",
+      "text": "3 — числовой примитив, new Number(3) — объект-обёртка. Для этих операндов == преобразует объект к примитиву и даёт true, а === даёт false из-за разных типов. Две отдельно созданные обёртки не равны друг другу даже через ==: объекты сравниваются по идентичности. Обычно нужен примитив Number(value), без new.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 7. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 7. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    },
+    {
+      "key": "duplicate-key",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer",
+      "title": "JavaScript: повторяющийся ключ — источник и разбор",
+      "text": "Позднее обычное свойство с тем же именем перезаписывает прежнее значение: a будет \"three\", b останется \"two\". Это правило обычных свойств; специальный синтаксис __proto__ имеет отдельные ограничения. Проверка повторяющихся ключей линтером помогает обнаруживать случайные перезаписи.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 25. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 25. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    },
+    {
+      "key": "iife-return",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return",
+      "title": "JavaScript: результат вызова — источник и разбор",
+      "text": "Сначала вызывается внутренняя стрелочная функция: скобки () после выражения выполняют её и дают 0. Внешняя функция возвращает это число, поэтому typeof sayHi() равен \"number\". Без последних скобок возвращалась бы сама функция, а typeof был бы \"function\".\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 34. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 34. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    }
+  ],
+  "questions": [
+    {
+      "key": "unary",
+      "question": "Почему +true возвращает число, а !\"Lydia\" — логическое значение?",
+      "topic": "JavaScript: преобразование значений",
+      "reference_answer": "Унарный плюс выполняет числовое преобразование: +true даёт 1. Оператор ! сначала проверяет истинность значения, затем инвертирует результат. Непустая строка истинна, поэтому !\"Lydia\" равно false; пустая строка ложна. Типы результатов — number и boolean.",
+      "rubric": [
+        "Называет 1 и false.",
+        "Разделяет числовое преобразование и проверку истинности.",
+        "Учитывает пустую строку."
+      ],
+      "task": "Запишите в result массив результатов +true, !\"Lydia\", +false, !\"\" и объясните каждый элемент.",
+      "task_solution": "const result = [+true, !\"Lydia\", +false, !\"\"];\n// [1, false, 0, true]",
+      "material_keys": [
+        "unary"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 4. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 4",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "number-wrapper",
+      "question": "Чем 3 отличается от new Number(3) при ==, === и typeof?",
+      "topic": "JavaScript: объект Number",
+      "reference_answer": "3 — числовой примитив, new Number(3) — объект-обёртка. Для этих операндов == преобразует объект к примитиву и даёт true, а === даёт false из-за разных типов. Две отдельно созданные обёртки не равны друг другу даже через ==: объекты сравниваются по идентичности. Обычно нужен примитив Number(value), без new.",
+      "rubric": [
+        "Различает объект и примитив.",
+        "Объясняет преобразование при == в этом примере.",
+        "Не приравнивает разные экземпляры обёртки."
+      ],
+      "task": "Даны a = 3, b = new Number(3), c = 3. Запишите в result результаты a == b, a === b, b === c и typeof b.",
+      "task_solution": "const a = 3, b = new Number(3), c = 3;\nconst result = [a == b, a === b, b === c, typeof b];\n// [true, false, false, \"object\"]",
+      "material_keys": [
+        "number-wrapper"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 7. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 7",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "duplicate-key",
+      "question": "Какое значение останется у a в объекте { a: \"one\", b: \"two\", a: \"three\" }?",
+      "topic": "JavaScript: повторяющийся ключ",
+      "reference_answer": "Позднее обычное свойство с тем же именем перезаписывает прежнее значение: a будет \"three\", b останется \"two\". Это правило обычных свойств; специальный синтаксис __proto__ имеет отдельные ограничения. Проверка повторяющихся ключей линтером помогает обнаруживать случайные перезаписи.",
+      "rubric": [
+        "Называет итоговые значения.",
+        "Указывает порядок объявлений.",
+        "Не считает повтор обычного ключа синтаксической ошибкой."
+      ],
+      "task": "Сохраните в result объект { a: \"one\", b: \"two\", a: \"three\" }; укажите его собственные ключи и значения.",
+      "task_solution": "const result = { a: \"one\", b: \"two\", a: \"three\" };\n// Object.keys(result): [\"a\", \"b\"]; result.a === \"three\"",
+      "material_keys": [
+        "duplicate-key"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 25. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 25",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "iife-return",
+      "question": "Каков typeof sayHi(), если sayHi возвращает (() => 0)()?",
+      "topic": "JavaScript: результат вызова",
+      "reference_answer": "Сначала вызывается внутренняя стрелочная функция: скобки () после выражения выполняют её и дают 0. Внешняя функция возвращает это число, поэтому typeof sayHi() равен \"number\". Без последних скобок возвращалась бы сама функция, а typeof был бы \"function\".",
+      "rubric": [
+        "Различает функцию и её вызов.",
+        "Прослеживает оба return.",
+        "Называет number и вариант без вызова."
+      ],
+      "task": "Реализуйте sayHi, возвращающую результат немедленного вызова () => 0; запишите typeof sayHi() в result.",
+      "task_solution": "function sayHi() { return (() => 0)(); }\nconst result = typeof sayHi();\n// \"number\"",
+      "material_keys": [
+        "iife-return"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 34. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 34",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    }
+  ]
+}

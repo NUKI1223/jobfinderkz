@@ -1,0 +1,29 @@
+[
+  {
+    "key": "js",
+    "repository": "https://github.com/lydiahallie/javascript-questions",
+    "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+    "license": "MIT",
+    "license_file": "licenses/js-MIT.txt",
+    "license_sha256": "a40ad66277b8f10d8664f3e1dfbea803c35a472c927b28afedf479c34f9bfa2e",
+    "inspected_at": "2026-09-26"
+  },
+  {
+    "key": "python",
+    "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+    "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+    "license": "MIT",
+    "license_file": "licenses/python-MIT.txt",
+    "license_sha256": "c5e7445f2b1eed0b0ed448f1a8a3bbe237857e1db38be5937b734fb7688bf8b1",
+    "inspected_at": "2026-09-26"
+  },
+  {
+    "key": "qa",
+    "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+    "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+    "license": "MIT",
+    "license_file": "licenses/qa-MIT.txt",
+    "license_sha256": "300bc8c5daa1d7749436540e10acce333d255978feb3da3bb29fe5f1dced848e",
+    "inspected_at": "2026-09-26"
+  }
+]

@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-qa-middle",
+  "source_kind": "documentation",
+  "direction": "qa",
+  "level": "middle",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "stale-element",
+      "url": "https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/",
+      "title": "Selenium: устаревшая ссылка — источник и разбор",
+      "text": "WebElement ссылается на конкретный DOM-узел. После его удаления, замены или смены документа старая ссылка может стать недействительной, даже если новый элемент выглядит так же. Нужно дождаться подходящего состояния и заново найти элемент в правильном окне/фрейме. Бесконечный retry и sleep скрывают причину; повтор действия с побочным эффектом без проверки результата опасен.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-2. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-2. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась."
+    },
+    {
+      "key": "page-object",
+      "url": "https://www.selenium.dev/documentation/test_practices/encouraged/page_object_models/",
+      "title": "Автотесты: Page Object — источник и разбор",
+      "text": "Page Object скрывает локаторы и детали взаимодействия за операциями страницы, например login(user). Проверки результата сценария обычно находятся в тесте, чтобы объект страницы не навязывал один исход всем сценариям. Допустима проверка готовности/инварианта самой страницы при создании объекта. Слишком большой объект лучше разделять на страницы и повторно используемые компоненты.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-pom-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён исходный запрет assertions: Selenium допускает проверку корректной загрузки страницы внутри Page Object.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-pom-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён исходный запрет assertions: Selenium допускает проверку корректной загрузки страницы внутри Page Object."
+    },
+    {
+      "key": "environment-config",
+      "url": "https://playwright.dev/docs/test-configuration",
+      "title": "Автотесты: конфигурация окружений — источник и разбор",
+      "text": "Параметры окружения читают при настройке запуска, валидируют и передают тестам через общий конфиг, например use.baseURL в Playwright. Тест использует относительный путь. Секреты поступают из защищённого окружения, не хранятся в репозитории и не печатаются. Параллельные тесты не должны менять общий процессный конфиг друг другу; выбранную цель фиксируют на запуск.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-config-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-config-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась."
+    },
+    {
+      "key": "actionability",
+      "url": "https://playwright.dev/docs/actionability",
+      "title": "Playwright: готовность действия — источник и разбор",
+      "text": "Для обычного click локатор должен разрешиться в один элемент, который видим, стабилен, принимает события и включён. Эти проверки относятся к возможности действия, а не к успешному сохранению на сервере. После клика нужно дождаться наблюдаемого результата операции. Force отключает часть проверок и не является универсальным исправлением нестабильного теста.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-pw-autowait-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-pw-autowait-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась."
+    }
+  ],
+  "questions": [
+    {
+      "key": "stale-element",
+      "question": "Почему сохранённый WebElement становится stale после обновления DOM и как исправить тест?",
+      "topic": "Selenium: устаревшая ссылка",
+      "reference_answer": "WebElement ссылается на конкретный DOM-узел. После его удаления, замены или смены документа старая ссылка может стать недействительной, даже если новый элемент выглядит так же. Нужно дождаться подходящего состояния и заново найти элемент в правильном окне/фрейме. Бесконечный retry и sleep скрывают причину; повтор действия с побочным эффектом без проверки результата опасен.",
+      "rubric": [
+        "Различает ссылку на узел и способ поиска.",
+        "Повторно находит элемент после изменения DOM.",
+        "Ограничивает ожидание и не повторяет побочное действие вслепую."
+      ],
+      "task": "После применения фильтра таблица заменяется целиком, а сохранённая кнопка строки вызывает StaleElementReferenceException. Опишите исправление без бесконечного retry.",
+      "task_solution": "Не хранить WebElement строки через обновление таблицы. Дождаться окончания обновления по наблюдаемому условию (например, старая таблица исчезла и новая содержит нужную строку), найти кнопку заново по устойчивому локатору в верном контексте и дождаться готовности действия. Ограничить время; на провал собрать диагностику.",
+      "material_keys": [
+        "stale-element"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-2. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-sel-2",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "page-object",
+      "question": "Что инкапсулировать в Page Object и где должны оставаться проверки бизнес-результата?",
+      "topic": "Автотесты: Page Object",
+      "reference_answer": "Page Object скрывает локаторы и детали взаимодействия за операциями страницы, например login(user). Проверки результата сценария обычно находятся в тесте, чтобы объект страницы не навязывал один исход всем сценариям. Допустима проверка готовности/инварианта самой страницы при создании объекта. Слишком большой объект лучше разделять на страницы и повторно используемые компоненты.",
+      "rubric": [
+        "Скрывает детали DOM за операциями.",
+        "Оставляет бизнес-ожидания в тесте.",
+        "Отличает инвариант страницы от результата сценария."
+      ],
+      "task": "Метод loginPage.login() сам проверяет только успешный вход, поэтому тест неверного пароля неудобен. Предложите разделение обязанностей для обоих сценариев.",
+      "task_solution": "Метод login заполняет поля и отправляет форму; предоставляет доступ к наблюдаемому результату или возвращает подходящий объект страницы. Позитивный тест ожидает кабинет, негативный — видимое сообщение об ошибке. Проверку, что открыта нужная форма, можно оставить в объекте страницы; требование успешного входа в каждом вызове — убрать.",
+      "material_keys": [
+        "page-object"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-pom-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён исходный запрет assertions: Selenium допускает проверку корректной загрузки страницы внутри Page Object.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-fw-pom-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "environment-config",
+      "question": "Как запускать один набор тестов на разных окружениях без URL и секретов внутри тестовых сценариев?",
+      "topic": "Автотесты: конфигурация окружений",
+      "reference_answer": "Параметры окружения читают при настройке запуска, валидируют и передают тестам через общий конфиг, например use.baseURL в Playwright. Тест использует относительный путь. Секреты поступают из защищённого окружения, не хранятся в репозитории и не печатаются. Параллельные тесты не должны менять общий процессный конфиг друг другу; выбранную цель фиксируют на запуск.",
+      "rubric": [
+        "Выносит адрес из теста в конфигурацию.",
+        "Проверяет обязательные параметры и не раскрывает секреты.",
+        "Не меняет общий конфиг между параллельными тестами."
+      ],
+      "task": "Есть локальное и тестовое окружения. Опишите, где определить baseURL и как тесту открыть /login; что делать при отсутствии обязательного адреса тестового окружения?",
+      "task_solution": "При старте конфигурации выбрать окружение и валидировать его адрес; передать адрес в use.baseURL. В тесте использовать await page.goto(\"/login\"). При отсутствии обязательного адреса завершить конфигурацию понятной ошибкой, не подставлять молча другую среду. Учётные данные передавать отдельно через защищённые переменные без вывода в лог.",
+      "material_keys": [
+        "environment-config"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-fw-config-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-fw-config-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "actionability",
+      "question": "Что проверяет auto-wait перед locator.click() и почему успешный клик не доказывает завершение бизнес-операции?",
+      "topic": "Playwright: готовность действия",
+      "reference_answer": "Для обычного click локатор должен разрешиться в один элемент, который видим, стабилен, принимает события и включён. Эти проверки относятся к возможности действия, а не к успешному сохранению на сервере. После клика нужно дождаться наблюдаемого результата операции. Force отключает часть проверок и не является универсальным исправлением нестабильного теста.",
+      "rubric": [
+        "Называет проверки готовности к клику.",
+        "Отделяет действие от бизнес-результата.",
+        "Добавляет ожидание результата вместо force."
+      ],
+      "task": "Тест нажал «Сохранить», сразу закрыл страницу и иногда теряет изменения. Как исправить сценарий, используя auto-wait и проверку результата?",
+      "task_solution": "Выполнить await page.getByRole(\"button\", { name: \"Сохранить\" }).click(); затем дождаться подтверждения сохранения, связанного с этой операцией, например await expect(page.getByRole(\"status\")).toHaveText(\"Сохранено\"). Если цель — проверить устойчивость данных, открыть страницу заново и проверить сохранённое значение. Auto-wait клика сам по себе не ждёт завершения записи.",
+      "material_keys": [
+        "actionability"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-pw-autowait-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-pw-autowait-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    }
+  ]
+}

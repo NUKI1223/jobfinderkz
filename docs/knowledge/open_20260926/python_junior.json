@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-python-junior",
+  "source_kind": "documentation",
+  "direction": "python",
+  "level": "junior",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "adjacent-product",
+      "url": "https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range",
+      "title": "Python: соседние элементы — источник и разбор",
+      "text": "Нужно сравнить произведения a[i] * a[i + 1] для всех допустимых i. Начальный максимум берут из первой пары, а не из нуля: все произведения могут быть отрицательными. Перестановка или сортировка меняет соседство и недопустима. Проход требует O(n) операций и O(1) дополнительной памяти; при длине меньше двух контракт должен определить ошибку.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/adjacentElementProduct.py, adjacentElementProduct.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. В исходнике brute-force и sorting решают другую задачу (любая пара). Оставлено соседство; контрпример [9, 1, 8]: 9, а не 72.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/adjacentElementProduct.py, adjacentElementProduct.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. В исходнике brute-force и sorting решают другую задачу (любая пара). Оставлено соседство; контрпример [9, 1, 8]: 9, а не 72."
+    },
+    {
+      "key": "move-zeros",
+      "url": "https://docs.python.org/3/library/stdtypes.html#mutable-sequence-types",
+      "title": "Python: два указателя — источник и разбор",
+      "text": "Указатель записи отмечает следующую позицию ненулевого элемента. При проходе слева направо ненулевое число записывается в эту позицию, затем указатель сдвигается. После прохода остаток заполняется нулями. Запись не опережает чтение, поэтому будущие значения не теряются; порядок сохраняется. O(n) времени, O(1) дополнительной памяти.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/move_zeros_to_end.py, move_zeros_to_end.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/move_zeros_to_end.py, move_zeros_to_end.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах."
+    },
+    {
+      "key": "first-unique",
+      "url": "https://docs.python.org/3/library/collections.html#collections.Counter",
+      "title": "Python: частоты символов — источник и разбор",
+      "text": "Сначала локальный Counter считает кодовые точки строки, затем второй проход по исходной строке выбирает первую с частотой один. Состояние не хранится в глобальном словаре. Если такой точки нет, возвращается None. Регистр учитывается; нормализация Unicode и объединение нескольких кодовых точек в видимый символ здесь не выполняются.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/first_unique_letter.py, first_unique_letter.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Убран глобальный счётчик только для a–z: он загрязнял повторные вызовы и не поддерживал произвольные кодовые точки.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/first_unique_letter.py, first_unique_letter.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Убран глобальный счётчик только для a–z: он загрязнял повторные вызовы и не поддерживал произвольные кодовые точки."
+    },
+    {
+      "key": "anagram",
+      "url": "https://docs.python.org/3/library/collections.html#collections.Counter",
+      "title": "Python: сравнение мультимножеств — источник и разбор",
+      "text": "Множество теряет число повторений: \"aab\" и \"abb\" имеют одинаковые множества, но разные частоты. Counter сохраняет кратность и позволяет сравнить мультимножества кодовых точек. В этом контракте регистр и пробелы значимы, нормализация не выполняется. Ожидаемое время O(n + m), память зависит от числа различных символов.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/is_anagram_using_collections.py, is_anagram_using_collections.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/is_anagram_using_collections.py, is_anagram_using_collections.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах."
+    }
+  ],
+  "questions": [
+    {
+      "key": "adjacent-product",
+      "question": "Как найти максимальное произведение двух соседних элементов списка, не подменив задачу поиском любой пары?",
+      "topic": "Python: соседние элементы",
+      "reference_answer": "Нужно сравнить произведения a[i] * a[i + 1] для всех допустимых i. Начальный максимум берут из первой пары, а не из нуля: все произведения могут быть отрицательными. Перестановка или сортировка меняет соседство и недопустима. Проход требует O(n) операций и O(1) дополнительной памяти; при длине меньше двух контракт должен определить ошибку.",
+      "rubric": [
+        "Сохраняет исходное соседство.",
+        "Корректно обрабатывает отрицательные произведения.",
+        "Даёт линейное решение и проверяет длину."
+      ],
+      "task": "Напишите adjacent_product(values) для списка целых чисел: верните наибольшее произведение соседей. При длине < 2 выбросьте ValueError. [9, 1, 8] → 9; [-2, 3, -4] → -6. Вход не изменять.",
+      "task_solution": "def adjacent_product(values):\n    if len(values) < 2:\n        raise ValueError(\"at least two values required\")\n    best = values[0] * values[1]\n    for i in range(1, len(values) - 1):\n        best = max(best, values[i] * values[i + 1])\n    return best",
+      "material_keys": [
+        "adjacent-product"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/adjacentElementProduct.py, adjacentElementProduct.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. В исходнике brute-force и sorting решают другую задачу (любая пара). Оставлено соседство; контрпример [9, 1, 8]: 9, а не 72.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "adjacentElementProduct.py",
+        "item": "adjacentElementProduct.py",
+        "sha256": "731e3df276583daffb9007d7a8f8a9f78101c36afef7cd3d3a4b5f2d0fe1086d"
+      }
+    },
+    {
+      "key": "move-zeros",
+      "question": "Как переместить нули в конец списка на месте, сохранив порядок остальных чисел?",
+      "topic": "Python: два указателя",
+      "reference_answer": "Указатель записи отмечает следующую позицию ненулевого элемента. При проходе слева направо ненулевое число записывается в эту позицию, затем указатель сдвигается. После прохода остаток заполняется нулями. Запись не опережает чтение, поэтому будущие значения не теряются; порядок сохраняется. O(n) времени, O(1) дополнительной памяти.",
+      "rubric": [
+        "Разделяет чтение и запись.",
+        "Сохраняет относительный порядок.",
+        "Обрабатывает пустой список и одни нули."
+      ],
+      "task": "Напишите move_zeros(values) для списка целых чисел. Измените тот же список и верните его. [0, 3, 0, -1, 2] → [3, -1, 2, 0, 0]. Не создавайте второй список.",
+      "task_solution": "def move_zeros(values):\n    write = 0\n    for value in values:\n        if value != 0:\n            values[write] = value\n            write += 1\n    for i in range(write, len(values)):\n        values[i] = 0\n    return values",
+      "material_keys": [
+        "move-zeros"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/move_zeros_to_end.py, move_zeros_to_end.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "move_zeros_to_end.py",
+        "item": "move_zeros_to_end.py",
+        "sha256": "2ca8b6456a2466d96dbba040b777b58e3a15156c6e81c1c7de52aa33e187b630"
+      }
+    },
+    {
+      "key": "first-unique",
+      "question": "Как найти первый неповторяющийся символ, чтобы повторные вызовы функции не влияли друг на друга?",
+      "topic": "Python: частоты символов",
+      "reference_answer": "Сначала локальный Counter считает кодовые точки строки, затем второй проход по исходной строке выбирает первую с частотой один. Состояние не хранится в глобальном словаре. Если такой точки нет, возвращается None. Регистр учитывается; нормализация Unicode и объединение нескольких кодовых точек в видимый символ здесь не выполняются.",
+      "rubric": [
+        "Использует локальные частоты.",
+        "Сохраняет порядок исходной строки.",
+        "Определяет отсутствие результата и Unicode-контракт."
+      ],
+      "task": "Напишите first_unique(text): верните первую кодовую точку с частотой 1 или None. Регистр важен; пустая строка → None; \"топот\" → \"п\". Вызовы должны быть независимыми.",
+      "task_solution": "from collections import Counter\n\ndef first_unique(text):\n    counts = Counter(text)\n    return next((char for char in text if counts[char] == 1), None)",
+      "material_keys": [
+        "first-unique"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/first_unique_letter.py, first_unique_letter.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Убран глобальный счётчик только для a–z: он загрязнял повторные вызовы и не поддерживал произвольные кодовые точки.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "first_unique_letter.py",
+        "item": "first_unique_letter.py",
+        "sha256": "4e6c916872bdc3fa7ac3df9ba49af1f6f24d67821ea449b10c1bd7201b75038e"
+      }
+    },
+    {
+      "key": "anagram",
+      "question": "Почему сравнение множеств символов недостаточно для проверки анаграмм?",
+      "topic": "Python: сравнение мультимножеств",
+      "reference_answer": "Множество теряет число повторений: \"aab\" и \"abb\" имеют одинаковые множества, но разные частоты. Counter сохраняет кратность и позволяет сравнить мультимножества кодовых точек. В этом контракте регистр и пробелы значимы, нормализация не выполняется. Ожидаемое время O(n + m), память зависит от числа различных символов.",
+      "rubric": [
+        "Учитывает число повторений.",
+        "Приводит контрпример для set.",
+        "Явно определяет регистр и пробелы."
+      ],
+      "task": "Напишите is_anagram(left, right) через Counter. Сравнивайте строки точно по кодовым точкам, с учётом регистра и пробелов. \"aab\"/\"aba\" → True; \"aab\"/\"abb\" → False; две пустые строки → True.",
+      "task_solution": "from collections import Counter\n\ndef is_anagram(left, right):\n    return Counter(left) == Counter(right)",
+      "material_keys": [
+        "anagram"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/is_anagram_using_collections.py, is_anagram_using_collections.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "is_anagram_using_collections.py",
+        "item": "is_anagram_using_collections.py",
+        "sha256": "8ce5287d53dcd15391ea0e446ade9e82a287ea34171e4a8b0224fa9b1a5bb3dd"
+      }
+    }
+  ]
+}

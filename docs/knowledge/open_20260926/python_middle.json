@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-python-middle",
+  "source_kind": "documentation",
+  "direction": "python",
+  "level": "middle",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "binary-search",
+      "url": "https://docs.python.org/3/library/bisect.html",
+      "title": "Python: бинарный поиск — источник и разбор",
+      "text": "На отсортированном списке сравнивают цель со средним элементом и продолжают только в подходящей половине. Пустой диапазон означает отсутствие. Передача границ вместо срезов избегает копирования списков: O(log n) сравнений и O(log n) стека рекурсии. При дубликатах можно вернуть любой подходящий индекс, если поиск первого явно не требуется.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/binary_search_recursive.py, binary_search_recursive.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/binary_search_recursive.py, binary_search_recursive.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах."
+    },
+    {
+      "key": "max-subarray",
+      "url": "https://docs.python.org/3/library/functions.html#max",
+      "title": "Python: непрерывный подмассив — источник и разбор",
+      "text": "Для каждой позиции хранят лучшую сумму, заканчивающуюся именно здесь: начать заново с текущего числа либо продолжить предыдущую сумму. Общий максимум обновляют отдельно. Оба значения инициализируют первым элементом; ноль ошибочно разрешил бы пустой подмассив. O(n) времени, O(1) дополнительной памяти для суммы.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/maximum_subarray_sum.py, maximum_subarray_sum.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/maximum_subarray_sum.py, maximum_subarray_sum.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах."
+    },
+    {
+      "key": "pairs-sum",
+      "url": "https://docs.python.org/3/library/stdtypes.html#set-types-set-frozenset",
+      "title": "Python: пары с заданной суммой — источник и разбор",
+      "text": "При проходе множество seen содержит только ранее встреченные значения. Для x сначала ищут k - x в seen и лишь затем добавляют x. Пара хранится в упорядоченном виде в отдельном множестве, чтобы убрать повторы. Пара (3, 3) для k=6 требует двух троек. Для отсортированного результата время ожидаемо O(n + p log p), где p — число пар, память O(n).\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/find_pairs_sum_k.py, find_pairs_sum_k.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено повторное использование одного индекса и дубли исходного решения. Контракт дополнен порядком выдачи.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/find_pairs_sum_k.py, find_pairs_sum_k.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено повторное использование одного индекса и дубли исходного решения. Контракт дополнен порядком выдачи."
+    },
+    {
+      "key": "product-except-self",
+      "url": "https://docs.python.org/3/library/stdtypes.html#sequence-types-list-tuple-range",
+      "title": "Python: префиксы и суффиксы — источник и разбор",
+      "text": "Первый проход записывает в результат произведение элементов слева от позиции. Второй справа налево домножает его на произведение справа. Текущий элемент не входит ни в одно из этих произведений. Деление не используется, поэтому нули не требуют особого случая. O(n) умножений, O(1) дополнительной памяти сверх результата; стоимость длинных целых может расти.\n\nАдаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/product_puzzle.py, product_puzzle.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Amogh Singhal\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/product_puzzle.py, product_puzzle.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах."
+    }
+  ],
+  "questions": [
+    {
+      "key": "binary-search",
+      "question": "Как рекурсивный бинарный поиск сужает диапазон и почему срезы могут испортить оценку сложности?",
+      "topic": "Python: бинарный поиск",
+      "reference_answer": "На отсортированном списке сравнивают цель со средним элементом и продолжают только в подходящей половине. Пустой диапазон означает отсутствие. Передача границ вместо срезов избегает копирования списков: O(log n) сравнений и O(log n) стека рекурсии. При дубликатах можно вернуть любой подходящий индекс, если поиск первого явно не требуется.",
+      "rubric": [
+        "Требует сортировку входа.",
+        "Уменьшает диапазон без повторного среднего.",
+        "Отличает границы от копирующих срезов."
+      ],
+      "task": "Напишите binary_search(values, target) для отсортированного списка целых чисел без срезов. Верните любой индекс цели или -1, включая пустой список. Используйте рекурсию.",
+      "task_solution": "def binary_search(values, target):\n    def search(left, right):\n        if left > right:\n            return -1\n        middle = left + (right - left) // 2\n        if values[middle] == target:\n            return middle\n        if values[middle] < target:\n            return search(middle + 1, right)\n        return search(left, middle - 1)\n    return search(0, len(values) - 1)",
+      "material_keys": [
+        "binary-search"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/binary_search_recursive.py, binary_search_recursive.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "binary_search_recursive.py",
+        "item": "binary_search_recursive.py",
+        "sha256": "c7f60b73817fe8ba2867dafaf30d5bde193a27fa6a35ce4b4db3e975ad82ce67"
+      }
+    },
+    {
+      "key": "max-subarray",
+      "question": "Как алгоритм Кадане находит максимальную сумму непустого непрерывного подмассива, если все числа отрицательные?",
+      "topic": "Python: непрерывный подмассив",
+      "reference_answer": "Для каждой позиции хранят лучшую сумму, заканчивающуюся именно здесь: начать заново с текущего числа либо продолжить предыдущую сумму. Общий максимум обновляют отдельно. Оба значения инициализируют первым элементом; ноль ошибочно разрешил бы пустой подмассив. O(n) времени, O(1) дополнительной памяти для суммы.",
+      "rubric": [
+        "Различает локальный и общий максимум.",
+        "Не допускает пустой подмассив.",
+        "Правильно обрабатывает все отрицательные числа."
+      ],
+      "task": "Напишите max_subarray(values) для списка целых чисел: сумма максимального непустого непрерывного подмассива. [] → ValueError; [-5, -2, -8] → -2; [4, -1, 2, -7, 3] → 5.",
+      "task_solution": "def max_subarray(values):\n    if not values:\n        raise ValueError(\"non-empty list required\")\n    ending = best = values[0]\n    for i in range(1, len(values)):\n        ending = max(values[i], ending + values[i])\n        best = max(best, ending)\n    return best",
+      "material_keys": [
+        "max-subarray"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/maximum_subarray_sum.py, maximum_subarray_sum.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "maximum_subarray_sum.py",
+        "item": "maximum_subarray_sum.py",
+        "sha256": "c2f1851571a1a374cbf0d900e68afa3adc9ede28a4ab614dccda48f5b9f799f5"
+      }
+    },
+    {
+      "key": "pairs-sum",
+      "question": "Как найти уникальные пары значений с суммой k, не использовав один элемент списка дважды?",
+      "topic": "Python: пары с заданной суммой",
+      "reference_answer": "При проходе множество seen содержит только ранее встреченные значения. Для x сначала ищут k - x в seen и лишь затем добавляют x. Пара хранится в упорядоченном виде в отдельном множестве, чтобы убрать повторы. Пара (3, 3) для k=6 требует двух троек. Для отсортированного результата время ожидаемо O(n + p log p), где p — число пар, память O(n).",
+      "rubric": [
+        "Требует разные индексы.",
+        "Проверяет дополнение до добавления текущего значения.",
+        "Убирает дубли пар и учитывает сортировку результата."
+      ],
+      "task": "Напишите pairs_sum(values, target) для целых чисел: уникальные пары (меньшее, большее), отсортированные лексикографически. [3], 6 → []; [3, 3, 1, 5, 5], 6 → [(1, 5), (3, 3)]. Вход не изменять.",
+      "task_solution": "def pairs_sum(values, target):\n    seen, pairs = set(), set()\n    for value in values:\n        other = target - value\n        if other in seen:\n            pairs.add((min(value, other), max(value, other)))\n        seen.add(value)\n    return sorted(pairs)",
+      "material_keys": [
+        "pairs-sum"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/find_pairs_sum_k.py, find_pairs_sum_k.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено повторное использование одного индекса и дубли исходного решения. Контракт дополнен порядком выдачи.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "find_pairs_sum_k.py",
+        "item": "find_pairs_sum_k.py",
+        "sha256": "4c515989e703511d49a0bde5ff2f195447132dc0b4387daa1df8e97556b8b1f3"
+      }
+    },
+    {
+      "key": "product-except-self",
+      "question": "Как получить произведение всех элементов кроме текущего без деления, в том числе при наличии нулей?",
+      "topic": "Python: префиксы и суффиксы",
+      "reference_answer": "Первый проход записывает в результат произведение элементов слева от позиции. Второй справа налево домножает его на произведение справа. Текущий элемент не входит ни в одно из этих произведений. Деление не используется, поэтому нули не требуют особого случая. O(n) умножений, O(1) дополнительной памяти сверх результата; стоимость длинных целых может расти.",
+      "rubric": [
+        "Разделяет левое и правое произведение.",
+        "Не использует деление.",
+        "Проверяет один и несколько нулей."
+      ],
+      "task": "Напишите product_except_self(values) для целых чисел без деления и изменения входа. [] → []; [7] → [1] (пустое произведение); [2, 0, 4] → [0, 8, 0].",
+      "task_solution": "def product_except_self(values):\n    result = [1] * len(values)\n    prefix = 1\n    for i, value in enumerate(values):\n        result[i] = prefix\n        prefix *= value\n    suffix = 1\n    for i in range(len(values) - 1, -1, -1):\n        result[i] *= suffix\n        suffix *= values[i]\n    return result",
+      "material_keys": [
+        "product-except-self"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/devAmoghS/Python-Interview-Problems-for-Practice/blob/5e2189c50841bb9ed54807986b8dd010590fd9b5/product_puzzle.py, product_puzzle.py. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнён контракт входных данных; решение проверяется на граничных и малых переборных примерах.",
+      "upstream": {
+        "repository": "https://github.com/devAmoghS/Python-Interview-Problems-for-Practice",
+        "commit": "5e2189c50841bb9ed54807986b8dd010590fd9b5",
+        "path": "product_puzzle.py",
+        "item": "product_puzzle.py",
+        "sha256": "ca16b3855773db9eabf93b83e208d31d1517d8a96c8a0a6d88cfc9ca15a69432"
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-qa-junior",
+  "source_kind": "documentation",
+  "direction": "qa",
+  "level": "junior",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "waits",
+      "url": "https://www.selenium.dev/documentation/webdriver/waits/",
+      "title": "Selenium: ожидания — источник и разбор",
+      "text": "Implicit wait задаёт ожидание поиска элемента для сессии; наличие в DOM ещё не означает готовность к нужному действию. Explicit wait повторяет проверку конкретного условия до успеха или таймаута. Смешивание может дать неожиданную общую длительность: поиск внутри условия сам ждёт implicit timeout. Предпочтительны явные условия с ограниченным временем, соответствующие следующему действию.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась."
+    },
+    {
+      "key": "close-quit",
+      "url": "https://www.selenium.dev/documentation/webdriver/interactions/windows/",
+      "title": "Selenium: жизненный цикл сессии — источник и разбор",
+      "text": "Close закрывает текущее окно; если оно последнее, WebDriver-сессия также завершается. При оставшихся окнах работу можно продолжить после переключения на действительный handle. Quit завершает сессию целиком и закрывает связанные окна; его помещают в гарантированную очистку ресурса теста. Закрытие одного из нескольких окон не заменяет такую очистку.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-close-quit-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-close-quit-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась."
+    },
+    {
+      "key": "sql-antijoin",
+      "url": "https://www.postgresql.org/docs/current/functions-subquery.html",
+      "title": "SQL: записи без соответствия — источник и разбор",
+      "text": "Коррелированный NOT EXISTS проверяет отсутствие строки B с нужным ключом. NULL в B.a_id не создаёт совпадения равенством. NOT IN с подзапросом, содержащим NULL, может дать неизвестное значение вместо true и неожиданно исключить строки. LEFT JOIN с проверкой отсутствия совпавшего ключа — другой вариант; проверять нужно надёжный признак отсутствия правой строки.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test с NULL, дублями и пустой правой таблицей.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test с NULL, дублями и пустой правой таблицей."
+    },
+    {
+      "key": "sql-group-filter",
+      "url": "https://www.postgresql.org/docs/current/tutorial-agg.html",
+      "title": "SQL: фильтрация групп — источник и разбор",
+      "text": "WHERE отбирает исходные строки до группировки, HAVING — группы после вычисления агрегатов. COUNT(*) считает все строки группы, COUNT(email) только строки с ненулевым email. Поэтому проверку количества строк группы выражают через HAVING COUNT(*), а условие над отдельной записью обычно помещают в WHERE.\n\nАдаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-fund-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test: неактивные строки, NULL email, отсев малых групп.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2026 SDET Engineering Playbook\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-fund-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test: неактивные строки, NULL email, отсев малых групп."
+    }
+  ],
+  "questions": [
+    {
+      "key": "waits",
+      "question": "Чем implicit wait отличается от explicit wait и почему их смешивание усложняет таймауты?",
+      "topic": "Selenium: ожидания",
+      "reference_answer": "Implicit wait задаёт ожидание поиска элемента для сессии; наличие в DOM ещё не означает готовность к нужному действию. Explicit wait повторяет проверку конкретного условия до успеха или таймаута. Смешивание может дать неожиданную общую длительность: поиск внутри условия сам ждёт implicit timeout. Предпочтительны явные условия с ограниченным временем, соответствующие следующему действию.",
+      "rubric": [
+        "Различает поиск и условие готовности.",
+        "Объясняет вложенные ожидания.",
+        "Выбирает конкретное условие вместо фиксированного sleep."
+      ],
+      "task": "После отправки формы подтверждение появляется с переменной задержкой. Предложите стратегию ожидания и критерий успеха; объясните, почему time.sleep(5) и простое наличие любого div недостаточны.",
+      "task_solution": "Не смешивать implicit wait с explicit wait. После отправки ограниченно ждать видимость конкретного подтверждения успешного сохранения и ожидаемый текст/идентификатор результата. При таймауте сохранить диагностику. Фиксированный sleep может быть и слишком коротким, и избыточным; любой div не доказывает сохранение.",
+      "material_keys": [
+        "waits"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-sel-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "close-quit",
+      "question": "Когда использовать driver.close(), а когда driver.quit() при завершении теста?",
+      "topic": "Selenium: жизненный цикл сессии",
+      "reference_answer": "Close закрывает текущее окно; если оно последнее, WebDriver-сессия также завершается. При оставшихся окнах работу можно продолжить после переключения на действительный handle. Quit завершает сессию целиком и закрывает связанные окна; его помещают в гарантированную очистку ресурса теста. Закрытие одного из нескольких окон не заменяет такую очистку.",
+      "rubric": [
+        "Разделяет текущее окно и всю сессию.",
+        "Учитывает последнее окно и переключение handle.",
+        "Вызывает quit при завершении теста даже после ошибки."
+      ],
+      "task": "Тест открыл дополнительное окно, затем проверка упала. Опишите, где должна выполняться очистка, чтобы не оставить WebDriver-сессию и окна.",
+      "task_solution": "После успешного создания driver обернуть работу теста в try/finally или fixture с гарантированным teardown; в очистке вызвать driver.quit(). Close использовать в сценарии закрытия конкретного окна, затем переключаться на оставшееся. Ошибка проверки не должна обходить teardown.",
+      "material_keys": [
+        "close-quit"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sel-close-quit-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Уточнение исходного ответа по официальной документации; браузерная интеграция Selenium не запускалась.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-sel-close-quit-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "sql-antijoin",
+      "question": "Как найти строки A без соответствующих строк B и чем опасен NOT IN при NULL?",
+      "topic": "SQL: записи без соответствия",
+      "reference_answer": "Коррелированный NOT EXISTS проверяет отсутствие строки B с нужным ключом. NULL в B.a_id не создаёт совпадения равенством. NOT IN с подзапросом, содержащим NULL, может дать неизвестное значение вместо true и неожиданно исключить строки. LEFT JOIN с проверкой отсутствия совпавшего ключа — другой вариант; проверять нужно надёжный признак отсутствия правой строки.",
+      "rubric": [
+        "Формулирует условие связи.",
+        "Объясняет NULL у NOT IN.",
+        "Сохраняет каждую подходящую строку A один раз."
+      ],
+      "task": "В PostgreSQL есть a(id integer primary key) и b(a_id integer). Верните id из a без совпадений b.a_id, по возрастанию. a: 1,2,3; b: 2,2,NULL → 1,3.",
+      "task_solution": "SELECT a.id\nFROM a\nWHERE NOT EXISTS (SELECT 1 FROM b WHERE b.a_id = a.id)\nORDER BY a.id;",
+      "material_keys": [
+        "sql-antijoin"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test с NULL, дублями и пустой правой таблицей.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-sql-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    },
+    {
+      "key": "sql-group-filter",
+      "question": "Чем WHERE отличается от HAVING и почему COUNT(email) может быть меньше COUNT(*)?",
+      "topic": "SQL: фильтрация групп",
+      "reference_answer": "WHERE отбирает исходные строки до группировки, HAVING — группы после вычисления агрегатов. COUNT(*) считает все строки группы, COUNT(email) только строки с ненулевым email. Поэтому проверку количества строк группы выражают через HAVING COUNT(*), а условие над отдельной записью обычно помещают в WHERE.",
+      "rubric": [
+        "Разделяет отбор строк и групп.",
+        "Учитывает NULL при подсчёте столбца.",
+        "Использует нужный агрегат в HAVING."
+      ],
+      "task": "В PostgreSQL users(team text, active boolean, email text). Для команд минимум с двумя активными пользователями верните team, COUNT(*) AS members и COUNT(email) AS emails. Отсортируйте по team.",
+      "task_solution": "SELECT team, COUNT(*) AS members, COUNT(email) AS emails\nFROM users\nWHERE active = TRUE\nGROUP BY team\nHAVING COUNT(*) >= 2\nORDER BY team;",
+      "material_keys": [
+        "sql-group-filter"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/Saurabhsds13/sdet-engineering-playbook/blob/ed0620f52cf71b756e1dfef8da4fef2ba1706611/data/interview-questions.json, iv-sql-fund-1. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. SQL проверяется исполнением в jobfinder_test: неактивные строки, NULL email, отсев малых групп.",
+      "upstream": {
+        "repository": "https://github.com/Saurabhsds13/sdet-engineering-playbook",
+        "commit": "ed0620f52cf71b756e1dfef8da4fef2ba1706611",
+        "path": "data/interview-questions.json",
+        "item": "iv-sql-fund-1",
+        "sha256": "7b8caa9dd9d402efc8e36dee3d6e1c6ff3497796e6b46fa4eea5aea4ecbb91b0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,140 @@
+{
+  "batch": "reviewed-open-20260926-frontend-middle",
+  "source_kind": "documentation",
+  "direction": "frontend",
+  "level": "middle",
+  "language": "ru",
+  "review_method": "Редакторская адаптация MIT-источников с привязкой к commit и официальной документации; исполняемые примеры проверяются отдельно. Не извлечено из видео; независимая экспертная оценка не заявляется.",
+  "materials": [
+    {
+      "key": "sparse-array",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+      "title": "JavaScript: разреженные массивы — источник и разбор",
+      "text": "Длина станет 11, собственных индексных свойств будет четыре: 0, 1, 2 и 10. Индексы 3–9 отсутствуют: чтение даёт undefined, но это не записанные элементы со значением undefined. При обычном неизменённом прототипе 3 in numbers даст false; map пропустит такие позиции, сохранив разреженность.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 37. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено объяснение исходника: holes не являются собственными элементами со значением undefined. Проверены Object.hasOwn и число вызовов map.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 37. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено объяснение исходника: holes не являются собственными элементами со значением undefined. Проверены Object.hasOwn и число вызовов map."
+    },
+    {
+      "key": "reduce-seed",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce",
+      "title": "JavaScript: начальный аккумулятор — источник и разбор",
+      "text": "Начальное значение становится аккумулятором первого вызова; первый элемент исходного массива не пропускается. Для [[0, 1], [2, 3]] и [1, 2] результат будет [1, 2, 0, 1, 2, 3]. Concat создаёт новый массив. На пустом входе возвращается начальный аккумулятор; reduce без него на пустом массиве выбрасывает TypeError.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 40. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 40. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    },
+    {
+      "key": "map-return",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return",
+      "title": "JavaScript: return без значения — источник и разбор",
+      "text": "Return без выражения завершает callback со значением undefined. Map сохраняет этот результат в соответствующем элементе. Для [1, 2, 3] с ранним return у чисел получится три существующих элемента undefined, а не пустой массив и не три отсутствующих свойства. Чтобы преобразовать числа, нужно вернуть вычисленное значение; для отбора элементов нужен filter.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 50. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 50. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    },
+    {
+      "key": "throw-flow",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw",
+      "title": "JavaScript: управление исключением — источник и разбор",
+      "text": "Throw прекращает обычное выполнение блока try и передаёт брошенное значение в catch. Здесь это строка \"Hello world!\", а не автоматически созданный Error. Следующая строка внутри try не выполняется. Обычно выбрасывают new Error(message), чтобы обработчик получил стандартные свойства ошибки; строка технически допустима.\n\nАдаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 52. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.\n\nЛицензия исходного материала (MIT):\nMIT License\n\nCopyright (c) 2019 Lydia Hallie\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 52. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN."
+    }
+  ],
+  "questions": [
+    {
+      "key": "sparse-array",
+      "question": "Что изменится после numbers[10] = 11 для [1, 2, 3] и чем пустые позиции отличаются от undefined?",
+      "topic": "JavaScript: разреженные массивы",
+      "reference_answer": "Длина станет 11, собственных индексных свойств будет четыре: 0, 1, 2 и 10. Индексы 3–9 отсутствуют: чтение даёт undefined, но это не записанные элементы со значением undefined. При обычном неизменённом прототипе 3 in numbers даст false; map пропустит такие позиции, сохранив разреженность.",
+      "rubric": [
+        "Называет длину 11.",
+        "Различает отсутствующее свойство и undefined.",
+        "Объясняет пропуск callback в map."
+      ],
+      "task": "Создайте numbers = [1, 2, 3], присвойте numbers[10] = 11. Запишите в result длину, Object.hasOwn(numbers, 3), число вызовов map и значение mapped[10], где map удваивает элементы.",
+      "task_solution": "const numbers = [1, 2, 3];\nnumbers[10] = 11;\nlet calls = 0;\nconst mapped = numbers.map(n => { calls++; return n * 2; });\nconst result = [numbers.length, Object.hasOwn(numbers, 3), calls, mapped[10]];\n// [11, false, 4, 22]",
+      "material_keys": [
+        "sparse-array"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 37. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Исправлено объяснение исходника: holes не являются собственными элементами со значением undefined. Проверены Object.hasOwn и число вызовов map.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 37",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "reduce-seed",
+      "question": "Почему reduce с concat и начальным [1, 2] сохраняет эти элементы перед объединёнными массивами?",
+      "topic": "JavaScript: начальный аккумулятор",
+      "reference_answer": "Начальное значение становится аккумулятором первого вызова; первый элемент исходного массива не пропускается. Для [[0, 1], [2, 3]] и [1, 2] результат будет [1, 2, 0, 1, 2, 3]. Concat создаёт новый массив. На пустом входе возвращается начальный аккумулятор; reduce без него на пустом массиве выбрасывает TypeError.",
+      "rubric": [
+        "Прослеживает начальный аккумулятор.",
+        "Получает все шесть элементов по порядку.",
+        "Учитывает пустой вход."
+      ],
+      "task": "Объедините [[0, 1], [2, 3]] через reduce и concat, начав с [1, 2]; сохраните результат в result. Не изменяйте исходный массив.",
+      "task_solution": "const input = [[0, 1], [2, 3]];\nconst result = input.reduce((acc, cur) => acc.concat(cur), [1, 2]);\n// [1, 2, 0, 1, 2, 3]",
+      "material_keys": [
+        "reduce-seed"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 40. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 40",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "map-return",
+      "question": "Почему map может вернуть массив из undefined, хотя callback вызывается для каждого числа?",
+      "topic": "JavaScript: return без значения",
+      "reference_answer": "Return без выражения завершает callback со значением undefined. Map сохраняет этот результат в соответствующем элементе. Для [1, 2, 3] с ранним return у чисел получится три существующих элемента undefined, а не пустой массив и не три отсутствующих свойства. Чтобы преобразовать числа, нужно вернуть вычисленное значение; для отбора элементов нужен filter.",
+      "rubric": [
+        "Объясняет ранний return.",
+        "Различает undefined и отсутствующие элементы.",
+        "Предлагает возврат значения для преобразования."
+      ],
+      "task": "Для [1, 2, 3] callback содержит if (typeof num === \"number\") return; return num * 2;. Запишите результат map в broken, а исправленное удвоение в result.",
+      "task_solution": "const broken = [1, 2, 3].map(num => {\n  if (typeof num === \"number\") return;\n  return num * 2;\n});\nconst result = [1, 2, 3].map(num => num * 2);\n// broken: [undefined, undefined, undefined]; result: [2, 4, 6]",
+      "material_keys": [
+        "map-return"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 50. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 50",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    },
+    {
+      "key": "throw-flow",
+      "question": "Что получит catch после throw \"Hello world!\" и выполнится ли следующая строка try?",
+      "topic": "JavaScript: управление исключением",
+      "reference_answer": "Throw прекращает обычное выполнение блока try и передаёт брошенное значение в catch. Здесь это строка \"Hello world!\", а не автоматически созданный Error. Следующая строка внутри try не выполняется. Обычно выбрасывают new Error(message), чтобы обработчик получил стандартные свойства ошибки; строка технически допустима.",
+      "rubric": [
+        "Называет точное пойманное значение.",
+        "Указывает пропуск оставшегося кода try.",
+        "Различает строку и Error."
+      ],
+      "task": "Создайте result = []. В try бросьте строку \"Hello world!\", затем попытайтесь добавить \"unreachable\". В catch добавьте пойманное значение. Каким станет result?",
+      "task_solution": "const result = [];\ntry {\n  throw \"Hello world!\";\n  result.push(\"unreachable\");\n} catch (error) {\n  result.push(error);\n}\n// [\"Hello world!\"]",
+      "material_keys": [
+        "throw-flow"
+      ],
+      "roles": "Учебная адаптация открытого источника; реплики кандидата и интервьюера отсутствуют.",
+      "review_note": "Адаптация https://github.com/lydiahallie/javascript-questions/blob/a8b427b9f7f94f1a2965144ba544b475c5f65829/README.md, Вопрос 52. Перевод, уточнение условий и техническая проверка: JobFinderKZ, 2026-09-26. Пример проверен в Node.js; объяснение уточнено по MDN.",
+      "upstream": {
+        "repository": "https://github.com/lydiahallie/javascript-questions",
+        "commit": "a8b427b9f7f94f1a2965144ba544b475c5f65829",
+        "path": "README.md",
+        "item": "Вопрос 52",
+        "sha256": "e29b5b485813216c0935a25705653cc859025e4363c80caa569b7b972ead6720"
+      }
+    }
+  ]
+}
